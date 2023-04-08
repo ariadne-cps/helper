@@ -29,7 +29,7 @@
 #ifndef UTILITY_TEMPLATES_TPL_HPP
 #define UTILITY_TEMPLATES_TPL_HPP
 
-namespace SymboliCore {
+namespace Utility {
 
 template<class T> class Variable;
 
@@ -510,6 +510,6 @@ return _is_polynomial_in_impl(s._op,s._arg,s._num,vars); }
 
 }
 
-} // namespace SymboliCore
+} // namespace Utility
 
 #endif

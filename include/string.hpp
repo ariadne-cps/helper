@@ -36,7 +36,7 @@
 #include <string>
 #include <sstream>
 
-namespace SymboliCore {
+namespace Utility {
 
 //! \brief A wrapper for the standard string class.
 class String : public std::string {
@@ -56,6 +56,6 @@ template<class T> inline String to_str(T const& t) {
 template<class T> String class_name();
 template<> inline String class_name<String>() { return "String"; }
 
-} // namespace SymboliCore
+} // namespace Utility
 
 #endif /* UTILITY_STRING_HPP */

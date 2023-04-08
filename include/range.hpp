@@ -35,7 +35,7 @@
 
 #include "typedefs.hpp"
 
-namespace SymboliCore {
+namespace Utility {
 
 //! \ingroup LinearAlgebraModule
 //! \brief A range of integer values from a \em start value up to, but not including, a \em stop value.
@@ -63,6 +63,6 @@ struct RangeIterator {
 inline RangeIterator begin(Range rng) { return RangeIterator(rng.start()); }
 inline RangeIterator end(Range rng) { return RangeIterator(rng.stop()); }
 
-} // namespace SymboliCore
+} // namespace Utility
 
 #endif // UTILITY_RANGE_HPP

@@ -32,7 +32,7 @@
 
 #include "variant.hpp"
 
-namespace SymboliCore {
+namespace Utility {
 
 template<class V, class C>
 decltype(auto) coded_visit(V& v, C code) {
@@ -174,6 +174,6 @@ template<class C, class... TS> template<class V> inline decltype(auto) CodedVari
 }
 
 
-} // namespace SymboliCore
+} // namespace Utility
 
 #endif

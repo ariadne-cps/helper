@@ -36,7 +36,7 @@
 #include <type_traits>
 #include <concepts>
 
-namespace SymboliCore {
+namespace Utility {
 
 typedef void Void;
 typedef bool Bool;
@@ -188,6 +188,6 @@ template<class A1, class A2> concept CanMultiply = requires(A1 a1, A2 a2) { { a1
 template<class A1, class A2> concept CanDivide = requires(A1 a1, A2 a2) { { a1/a2 }; };
 
 
-} // namespace SymboliCore
+} // namespace Utility
 
 #endif

@@ -42,7 +42,7 @@
 #include "array.hpp"
 #include "macros.hpp"
 
-namespace SymboliCore {
+namespace Utility {
 
 using std::make_tuple;
 using std::make_pair;
@@ -155,7 +155,7 @@ template<class T> class LinkedList
 };
 template<class T> inline OutputStream&
 operator<< (OutputStream &os, const std::list<T>& l) {
-    return SymboliCore::write_sequence(os,l.begin(),l.end());
+    return Utility::write_sequence(os,l.begin(),l.end());
 }
 
 
@@ -327,6 +327,6 @@ template<class T> inline List<T> make_list(const Set<T>& set) { return List<T>(s
 
 template<class T> inline Set<T> make_set(const std::vector<T>& lst) { return Set<T>(lst); }
 
-} // namespace SymboliCore
+} // namespace Utility
 
 #endif

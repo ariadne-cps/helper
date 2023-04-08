@@ -36,7 +36,7 @@
 #include "typedefs.hpp"
 #include "metaprogramming.hpp"
 
-namespace SymboliCore {
+namespace Utility {
 
 /************ WritableInterface **********************************************/
 
@@ -99,6 +99,6 @@ template<class T> WritableTemporary<T> Writer<T>::operator() (T const& t) const 
 
 template<class T> class RepresentationWriter;
 
-} // namespace SymboliCore
+} // namespace Utility
 
 #endif

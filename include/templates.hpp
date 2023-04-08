@@ -36,7 +36,7 @@
 #ifndef UTILITY_EXPRESSION_TEMPLATES_HPP
 #define UTILITY_EXPRESSION_TEMPLATES_HPP
 
-namespace SymboliCore {
+namespace Utility {
 
 /************ Symbolic ************************************************/
 
@@ -176,6 +176,6 @@ template<class O, class A1, class A2, class A3> struct TemporaryExpression<O,A1,
 };
 
 
-} // namespace SymboliCore
+} // namespace Utility
 
 #endif

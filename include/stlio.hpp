@@ -48,7 +48,7 @@
 #include "array.hpp"
 #include "tuple.hpp"
 
-namespace SymboliCore {
+namespace Utility {
 
 using OutputStream = std::ostream;
 using InputStream = std::istream;
@@ -156,7 +156,7 @@ read_sequence(InputStream& is, Container& v,
     try {
         is >> c;
         if(c != opening) {
-            throw std::ios_base::failure(std::string("SymboliCore::Base::read_vector: Input must begin with ")+opening);
+            throw std::ios_base::failure(std::string("Utility::Base::read_vector: Input must begin with ")+opening);
         }
 
         /* Handle case of empty list */
@@ -168,14 +168,14 @@ read_sequence(InputStream& is, Container& v,
 
         while(c != closing) {
             if(is.eof()) {
-                throw std::ios_base::failure("SymboliCore::Base::read_vector: End-of-file reached");
+                throw std::ios_base::failure("Utility::Base::read_vector: End-of-file reached");
             }
             if(c!=separator) {
-                throw std::ios_base::failure(std::string("SymboliCore::Base::read_vector: Items in list must be separated by ")+separator);
+                throw std::ios_base::failure(std::string("Utility::Base::read_vector: Items in list must be separated by ")+separator);
             }
             is >> x;
             if(is.fail()) {
-                throw std::ios_base::failure("SymboliCore::Base::read_vector: ErrorTag inputting value in list");
+                throw std::ios_base::failure("Utility::Base::read_vector: ErrorTag inputting value in list");
             }
             v.push_back(x);
             is >> c;
@@ -198,7 +198,7 @@ template<class TUP, std::size_t N> void write_tuple(std::ostream& os, TUP const&
     os << std::get<N-1>(tup);
 }
 
-} // namespace SymboliCore
+} // namespace Utility
 
 
 /* FIXME: This is a hack to allow io of STL classes.
@@ -228,7 +228,7 @@ inline
 std::ostream&
 operator<< (std::ostream &os, const std::vector<T>& v)
 {
-    return SymboliCore::write_sequence(os,v.begin(),v.end());
+    return Utility::write_sequence(os,v.begin(),v.end());
 }
 */
 
@@ -239,14 +239,14 @@ inline
 std::ostream&
 operator<< (std::ostream &os, const std::deque<T>& d)
 {
-    return SymboliCore::write_sequence(os,d.begin(),d.end());
+    return Utility::write_sequence(os,d.begin(),d.end());
 }
 
 template<class T>
 inline
 ostream&
 operator<< (std::ostream &os, const std::valarray<T>& v) {
-    return SymboliCore::write_sequence(os,&(v[0]),&(v[v.size()-1]));
+    return Utility::write_sequence(os,&(v[0]),&(v[v.size()-1]));
 }
 
 template<class T, class C>
@@ -254,7 +254,7 @@ inline
 std::ostream&
 operator<<(std::ostream &os, const std::set<T,C>& s)
 {
-    return SymboliCore::write_sequence(os,s.begin(), s.end(), '{', '}');
+    return Utility::write_sequence(os,s.begin(), s.end(), '{', '}');
 }
 
 template<class K, class T, class C>
@@ -262,7 +262,7 @@ inline
 std::ostream&
 operator<<(std::ostream &os, const std::map<K,T,C>& m)
 {
-    return SymboliCore::write_map_sequence(os,m.begin(), m.end(), '{', '}');
+    return Utility::write_map_sequence(os,m.begin(), m.end(), '{', '}');
 }
 
 template<class K, class T, class C>
@@ -270,7 +270,7 @@ inline
 std::ostream&
 operator<<(std::ostream &os, const std::map<K,std::shared_ptr<T>,C>& m)
 {
-    return SymboliCore::write_map_pointer_sequence(os,m.begin(), m.end(), '{', '}');
+    return Utility::write_map_pointer_sequence(os,m.begin(), m.end(), '{', '}');
 }
 
 */
@@ -279,7 +279,7 @@ template<class T>
 inline
 std::istream&
 operator>> (std::istream &is, std::vector<T>& v) {
-    return SymboliCore::read_sequence(is,v);
+    return Utility::read_sequence(is,v);
 }
 
 } // namespace std

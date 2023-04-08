@@ -40,7 +40,7 @@
 #include "metaprogramming.hpp"
 #include "writable.hpp"
 
-namespace SymboliCore {
+namespace Utility {
 
 /************ Handle *********************************************************/
 
@@ -179,6 +179,6 @@ template<class T, class I> SharedPointer<const T> dynamic_pointer_extract(const 
 }
 
 
-} // namespace SymboliCore
+} // namespace Utility
 
 #endif

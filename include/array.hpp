@@ -41,7 +41,7 @@
 #include <cassert>
 #include "metaprogramming.hpp"
 
-namespace SymboliCore {
+namespace Utility {
 
 using SizeType=std::size_t;
 template<class T> using InitializerList=std::initializer_list<T>;
@@ -263,6 +263,6 @@ inline Array<SizeType> complement(SizeType nmax, Array<SizeType> vars) {
     return cmpl;
 }
 
-} // namespace SymboliCore
+} // namespace Utility
 
 #endif
