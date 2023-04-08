@@ -41,6 +41,8 @@
 
 namespace Utility {
 
+template<class T> using SharedPointer = std::shared_ptr<T>;
+
 /************ Handle *********************************************************/
 
 template<class T> struct HandleObject { };
