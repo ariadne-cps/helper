@@ -33,9 +33,11 @@
 #ifndef UTILITY_RANGE_HPP
 #define UTILITY_RANGE_HPP
 
-#include "typedefs.hpp"
+#include <cstddef>
 
 namespace Utility {
+
+using SizeType = std::size_t;
 
 //! \ingroup LinearAlgebraModule
 //! \brief A range of integer values from a \em start value up to, but not including, a \em stop value.

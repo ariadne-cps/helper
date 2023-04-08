@@ -39,8 +39,6 @@
 #include <sstream>
 #include <stdexcept>
 
-#include "typedefs.hpp"
-
 #define UTILITY_USING_CONSTRUCTORS(Class,Base) \
     template<class T,typename std::enable_if<std::is_convertible<T,Base>::value,int>::type=0> \
     Class(const T& t) : Base(t) { } \
@@ -50,7 +48,7 @@
 
 #define UTILITY_THROW(except,func,msg)          \
     { \
-        StringStream ss; \
+        std::ostringstream ss; \
         ss << #except " in " << func << ": " << msg;    \
         throw except(ss.str()); \
     } \

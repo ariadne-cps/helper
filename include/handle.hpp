@@ -36,7 +36,6 @@
 #include <memory>
 
 #include "stdlib.hpp"
-#include "typedefs.hpp"
 #include "metaprogramming.hpp"
 #include "writable.hpp"
 
@@ -106,7 +105,7 @@ template<class I> class Handle {
   protected:
     template<class II> static Void _make_unique(SharedPointer<II>& ptr) {
         ptr=SharedPointer<I>(ptr->_copy()); }
-    template<class II> static Void _make_unique(SharedPointer<const II>& ptr) { }
+    template<class II> static Void _make_unique(SharedPointer<const II>&) { }
     void make_unique() { _make_unique(_ptr); }
   private:
     template<class T, class II> friend T& dynamic_handle_extract(Handle<II>& h);

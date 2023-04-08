@@ -33,10 +33,11 @@
 #ifndef UTILITY_WRITABLE_HPP
 #define UTILITY_WRITABLE_HPP
 
-#include "typedefs.hpp"
 #include "metaprogramming.hpp"
 
 namespace Utility {
+
+using OutputStream = std::ostream;
 
 /************ WritableInterface **********************************************/
 
