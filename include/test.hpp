@@ -584,7 +584,7 @@ int test_case_counter = 0;
  */
 #define UTILITY_TEST_GRID_TREE_SUBPAVING_ITERATOR( expected_result, theGridTreeSubpaving, expected_number_elements ) \
     {                                                                   \
-        SizeType elements_count = 0;                                         \
+        size_t elements_count = 0;                                         \
         for (GridTreeSubpaving::ConstIterator it = theGridTreeSubpaving.begin(), end = theGridTreeSubpaving.end(); it != end; it++, elements_count++) { \
             if( elements_count < expected_number_elements ) {           \
                 UTILITY_PRINT_TEST_COMMENT("The next Iterator node is: "); \
@@ -599,7 +599,7 @@ int test_case_counter = 0;
 /*! \brief clean std::vector, i.e. delete memory of it's non NULL elements and set them to NULL in the vector */
 #define UTILITY_CLEAN_TEST_VECTOR( vector ) \
     { \
-        for(SizeType i = 0; i < vector.size(); i++ ) { \
+        for(size_t i = 0; i < vector.size(); i++ ) { \
             if( vector[i] != NULL ) { \
                 delete vector[i]; vector[i] = NULL; \
             } \
