@@ -120,7 +120,7 @@ template<class T, class... AS> Handle<T> make_handle(AS&& ... as) {
     return Handle<T>(std::make_shared<T>(as...));
 }
 
-inline void write_error(OutputStream& os, const char* f, const WritableInterface* w, const char* i, const char* c, const char* t) {
+inline void write_error(ostream& os, const char* f, const WritableInterface* w, const char* i, const char* c, const char* t) {
     os << "Error in " << f << ":" << std::flush;
     os << " cannot convert "; if (w) { w->_write(os); } else { os << "object"; } os << std::flush;
     os << " of static type " << c << " and dynamic type " << i << " to type " << t << std::endl;

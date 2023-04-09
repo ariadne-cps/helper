@@ -37,27 +37,27 @@
 
 namespace Utility {
 
-using OutputStream = std::ostream;
+using std::ostream;
 
 /************ WritableInterface **********************************************/
 
 class WritableInterface {
   public:
     virtual ~WritableInterface() = default;
-    friend OutputStream& operator<<(OutputStream& os, const WritableInterface& w);
+    friend ostream& operator<<(ostream& os, const WritableInterface& w);
   public:
-    inline OutputStream& write(OutputStream& os) const { return this->_write(os); }
+    inline ostream& write(ostream& os) const { return this->_write(os); }
   protected:
   public:
-    virtual OutputStream& _write(OutputStream&) const = 0;
+    virtual ostream& _write(ostream&) const = 0;
 };
-inline OutputStream& operator<<(OutputStream& os, const WritableInterface& w) { w._write(os); return os; }
+inline ostream& operator<<(ostream& os, const WritableInterface& w) { w._write(os); return os; }
 
-template<class T, class = decltype(declval<T>()._write(declval<OutputStream>()))> True has_write(int);
+template<class T, class = decltype(declval<T>()._write(declval<ostream>()))> True has_write(int);
 template<class T> False has_write(...);
 template<class T, class = Fallback> struct IsWritable : decltype(has_write<T>(1)) { };
 
-template<class T> requires IsWritable<T>::value OutputStream& operator<<(OutputStream& os, const T& t) {
+template<class T> requires IsWritable<T>::value ostream& operator<<(ostream& os, const T& t) {
     return t._write(os);
 }
 
@@ -70,8 +70,8 @@ template<class T> class WriterInterface {
     virtual ~WriterInterface() = default;
     inline WritableTemporary<T> operator() (T const& t) const;
   private:
-    virtual OutputStream& _write(OutputStream& os, T const& t) const = 0;
-    friend OutputStream& operator<<(OutputStream& os, WritableTemporary<T> const& t);
+    virtual ostream& _write(ostream& os, T const& t) const = 0;
+    friend ostream& operator<<(ostream& os, WritableTemporary<T> const& t);
 };
 
 template<class T> class Handle;
@@ -89,7 +89,7 @@ template<class T, class W> class WritableTemporary {
     WritableTemporary(W const& w, T const& t) : _w(w), _t(t) { }
     friend W; friend class Writer<T>;
   public:
-    friend OutputStream& operator<<(OutputStream& os, WritableTemporary<T,W> const& wt) { return wt._w._write(os,wt._t); }
+    friend ostream& operator<<(ostream& os, WritableTemporary<T,W> const& wt) { return wt._w._write(os,wt._t); }
 };
 
 template<class T> WritableTemporary<T> WriterInterface<T>::operator() (T const& t) const {

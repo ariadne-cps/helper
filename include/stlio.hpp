@@ -50,12 +50,12 @@
 
 namespace Utility {
 
-using OutputStream = std::ostream;
-using InputStream = std::istream;
+using std::ostream;
+using std::istream;
 
 template<class InputIterator>
-OutputStream&
-write_sequence(OutputStream& os, InputIterator first, InputIterator last,
+ostream&
+write_sequence(ostream& os, InputIterator first, InputIterator last,
                char opening='[', char closing=']', char separator=',')
 {
     os << opening;
@@ -72,8 +72,8 @@ write_sequence(OutputStream& os, InputIterator first, InputIterator last,
 
 
 template<class InputIterator>
-OutputStream&
-write_pointer_sequence(OutputStream& os, InputIterator first, InputIterator last,
+ostream&
+write_pointer_sequence(ostream& os, InputIterator first, InputIterator last,
                        char opening='[', char closing=']', char separator=',')
 {
     os << opening;
@@ -90,8 +90,8 @@ write_pointer_sequence(OutputStream& os, InputIterator first, InputIterator last
 
 
 template<class InputIterator>
-OutputStream&
-write_map_sequence(OutputStream& os, InputIterator first, InputIterator last,
+ostream&
+write_map_sequence(ostream& os, InputIterator first, InputIterator last,
                    char opening='{', char closing='}', char separator=',', char descriptor=':')
 {
     os << opening;
@@ -107,8 +107,8 @@ write_map_sequence(OutputStream& os, InputIterator first, InputIterator last,
 }
 
 template<class InputIterator>
-OutputStream&
-write_map_pointer_sequence(OutputStream& os, InputIterator first, InputIterator last,
+ostream&
+write_map_pointer_sequence(ostream& os, InputIterator first, InputIterator last,
                            char opening='{', char closing='}', char separator=',', char descriptor=':')
 {
     os << opening;
@@ -124,8 +124,8 @@ write_map_pointer_sequence(OutputStream& os, InputIterator first, InputIterator 
 }
 
 template<class InputIterator>
-OutputStream&
-write_ariadne_map_sequence(OutputStream& os, InputIterator first, InputIterator last,
+ostream&
+write_coefficient_map_sequence(ostream& os, InputIterator first, InputIterator last,
                            char opening='{', char closing='}', char separator=',', char descriptor=':')
 {
     os << opening;
@@ -142,8 +142,8 @@ write_ariadne_map_sequence(OutputStream& os, InputIterator first, InputIterator 
 
 
 template<class Container>
-InputStream&
-read_sequence(InputStream& is, Container& v,
+istream&
+read_sequence(istream& is, Container& v,
               char opening='[', char closing=']', char separator=',')
 {
     typedef typename Container::value_type T;

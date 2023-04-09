@@ -48,7 +48,7 @@ using std::make_tuple;
 using std::make_pair;
 using std::size_t;
 
-template<class T> OutputStream& operator<<(OutputStream& os, const Array<T>& a) {
+template<class T> ostream& operator<<(ostream& os, const Array<T>& a) {
     bool first=true;
     for(auto x : a) {
         os << (first ? "[" : ",") << x;
@@ -58,7 +58,7 @@ template<class T> OutputStream& operator<<(OutputStream& os, const Array<T>& a) 
     return os << "]";
 }
 
-template<class T> OutputStream& operator<<(OutputStream& os, const SharedArray<T>& a) {
+template<class T> ostream& operator<<(ostream& os, const SharedArray<T>& a) {
     bool first=true;
     for(auto x : a) {
         os << (first ? "[" : ",") << x;
@@ -124,7 +124,7 @@ template<class F, class T1, class T2> List<ResultOf<F(T1,T2)>> elementwise(F con
     return r;
 }
 
-template<class T> OutputStream& operator<<(OutputStream& os, const std::vector<T>& v) {
+template<class T> ostream& operator<<(ostream& os, const std::vector<T>& v) {
     bool first=true;
     for(auto x : v) {
         os << (first ? "[" : ",") << x;
@@ -152,8 +152,8 @@ template<class T> class LinkedList
     void append(const LinkedList<T>& t) { for(unsigned int i=0; i!=t.size(); ++i) { this->push_back(t[i]); } }
     void concatenate(const LinkedList<T>& t) { for(unsigned int i=0; i!=t.size(); ++i) { this->push_back(t[i]); } }
 };
-template<class T> inline OutputStream&
-operator<< (OutputStream &os, const std::list<T>& l) {
+template<class T> inline ostream&
+operator<< (ostream &os, const std::list<T>& l) {
     return Utility::write_sequence(os,l.begin(),l.end());
 }
 
@@ -235,7 +235,7 @@ template<class T> inline std::set<T>& restrict(std::set<T>& r, const std::set<T>
     while(iter!=r.end()) { if(!contains(s,*iter)) { r.erase(iter++); } else { ++iter; } }
     return r; }
 
-template<class T> OutputStream& operator<<(OutputStream& os, const std::set<T>& v) {
+template<class T> ostream& operator<<(ostream& os, const std::set<T>& v) {
     bool first=true;
     for(auto x : v) {
         os << (first ? "{" : ",") << x;
@@ -289,7 +289,7 @@ template<class K, class T> Map<K,T> restrict_keys(const std::map<K,T>& m, const 
     Map<K,T> result; const Set<K>& keys=static_cast<const Set<K>&>(k);
     for(auto item_iter=m.begin(); item_iter!=m.end(); ++item_iter) {
         if(keys.contains(item_iter->first)) { result.insert(*item_iter); } } return result; }
-template<class K, class T> OutputStream& operator<<(OutputStream& os, const std::map<K,T>& m) {
+template<class K, class T> ostream& operator<<(ostream& os, const std::map<K,T>& m) {
     bool first=true;
     for(auto x : m) {
         os << (first ? "{ " : ", ") << x.first << ":" << x.second;
