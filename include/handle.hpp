@@ -105,9 +105,9 @@ template<class I> class Handle {
     const shared_ptr<I> managed_pointer() const { return _ptr; }
     shared_ptr<I> managed_pointer() { make_unique(); return _ptr; }
   protected:
-    template<class II> static Void _make_unique(shared_ptr<II>& ptr) {
+    template<class II> static void _make_unique(shared_ptr<II>& ptr) {
         ptr=shared_ptr<I>(ptr->clone()); }
-    template<class II> static Void _make_unique(shared_ptr<const II>&) { }
+    template<class II> static void _make_unique(shared_ptr<const II>&) { }
     void make_unique() { _make_unique(_ptr); }
   private:
     template<class T, class II> friend T& dynamic_handle_extract(Handle<II>& h);
