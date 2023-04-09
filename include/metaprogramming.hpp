@@ -66,8 +66,8 @@ template<class T, class... US> struct IsOneOf<T,T,US...> : True { };
 template<class T, class U0, class... US> struct IsOneOf<T,U0,US...> : IsOneOf<T,US...> { };
 
 template<class T, class... TS> struct IndexOf;
-template<class T, class... TS> struct IndexOf<T,T,TS...> { static const SizeType N=0; };
-template<class T, class T0, class... TS> struct IndexOf<T,T0,TS...> { static const SizeType N=IndexOf<T,TS...>::N+1u; };
+template<class T, class... TS> struct IndexOf<T,T,TS...> { static const size_t N=0; };
+template<class T, class T0, class... TS> struct IndexOf<T,T0,TS...> { static const size_t N=IndexOf<T,TS...>::N+1u; };
 template<class T> struct IndexOf<T> { };
 
 
