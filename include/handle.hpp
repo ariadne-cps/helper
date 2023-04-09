@@ -38,11 +38,10 @@
 #include "stdlib.hpp"
 #include "metaprogramming.hpp"
 #include "writable.hpp"
-#include "declarations.hpp"
-
-using std::shared_ptr;
 
 namespace Utility {
+
+using std::shared_ptr;
 
 /************ Handle *********************************************************/
 
