@@ -46,8 +46,7 @@ namespace Utility {
 
 using std::make_tuple;
 using std::make_pair;
-
-using SizeType=std::size_t;
+using std::size_t;
 
 template<class T> OutputStream& operator<<(OutputStream& os, const Array<T>& a) {
     bool first=true;
@@ -113,7 +112,7 @@ List<InvokeResult<F,T>> apply(F&& f, List<T> const& lst) {
 template<class F, class T> List<ResultOf<F(T)>> elementwise(F const& f, List<T> const& l) {
     typedef ResultOf<F(T)> R;
     List<R> r; r.reserve(l.size());
-    for(SizeType i=0; i!=l.size(); ++i) { r.append(f(l[i])); }
+    for(size_t i=0; i!=l.size(); ++i) { r.append(f(l[i])); }
     return r;
 }
 
@@ -121,7 +120,7 @@ template<class F, class T1, class T2> List<ResultOf<F(T1,T2)>> elementwise(F con
     typedef ResultOf<F(T1,T2)> R;
     assert(l1.size()==l2.size());
     List<R> r; r.reserve(l1.size());
-    for(SizeType i=0; i!=l1.size(); ++i) { r.append(f(l1[i],l2[i])); }
+    for(size_t i=0; i!=l1.size(); ++i) { r.append(f(l1[i],l2[i])); }
     return r;
 }
 

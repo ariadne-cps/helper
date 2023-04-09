@@ -40,6 +40,8 @@
 #include "writable.hpp"
 #include "declarations.hpp"
 
+using std::shared_ptr;
+
 namespace Utility {
 
 /************ Handle *********************************************************/
@@ -62,11 +64,11 @@ template<class I> class Handle {
   public:
     typedef I Interface;
   protected:
-    mutable SharedPointer<I> _ptr;
+    mutable shared_ptr<I> _ptr;
   public:
     ~Handle() { }
     explicit Handle(I* p) : _ptr(p) { }
-    Handle(SharedPointer<I> p) : _ptr(p) { }
+    Handle(shared_ptr<I> p) : _ptr(p) { }
     Handle(I&& r) : _ptr(r._move()) { }
     Handle(const I& r) : _ptr(r._copy()) { }
     template<DerivedFrom<I> T> Handle(T&& t) : _ptr(new T(std::move(t))) { }
@@ -100,13 +102,13 @@ template<class I> class Handle {
     const I* ptr() const { return _ptr.operator->(); }
     I* ptr() { make_unique(); return _ptr.operator->(); }
   public:
-    const SharedPointer<I> managed_const_pointer() const { return _ptr; }
-    const SharedPointer<I> managed_pointer() const { return _ptr; }
-    SharedPointer<I> managed_pointer() { make_unique(); return _ptr; }
+    const shared_ptr<I> managed_const_pointer() const { return _ptr; }
+    const shared_ptr<I> managed_pointer() const { return _ptr; }
+    shared_ptr<I> managed_pointer() { make_unique(); return _ptr; }
   protected:
-    template<class II> static Void _make_unique(SharedPointer<II>& ptr) {
-        ptr=SharedPointer<I>(ptr->clone()); }
-    template<class II> static Void _make_unique(SharedPointer<const II>&) { }
+    template<class II> static Void _make_unique(shared_ptr<II>& ptr) {
+        ptr=shared_ptr<I>(ptr->clone()); }
+    template<class II> static Void _make_unique(shared_ptr<const II>&) { }
     void make_unique() { _make_unique(_ptr); }
   private:
     template<class T, class II> friend T& dynamic_handle_extract(Handle<II>& h);
@@ -128,11 +130,11 @@ inline void write_error(OutputStream& os, const char* f, const WritableInterface
 template<class D, class B> D dynamic_handle_cast(B const& h) {
     typedef typename B::Interface BI;
     typedef typename D::Interface DI;
-    if constexpr (Same<decltype(h.managed_pointer()),SharedPointer<BI>>) {
-        SharedPointer<DI> p=std::dynamic_pointer_cast<DI>(h.managed_pointer());
+    if constexpr (Same<decltype(h.managed_pointer()),shared_ptr<BI>>) {
+        shared_ptr<DI> p=std::dynamic_pointer_cast<DI>(h.managed_pointer());
         if(p) { return D(Handle<DI>(p)); }
     } else {
-        SharedPointer<const DI> p=std::dynamic_pointer_cast<const DI>(h.managed_pointer());
+        shared_ptr<const DI> p=std::dynamic_pointer_cast<const DI>(h.managed_pointer());
         if(p) { return D(Handle<const DI>(p)); }
     }
     const BI* i=h.raw_pointer();
@@ -169,12 +171,12 @@ template<class T, class I> T& dynamic_handle_extract(Handle<I>& h) {
 
 
 
-template<class T, class I> SharedPointer<const T> dynamic_pointer_extract(const SharedPointer<const I>& ip) {
-    SharedPointer<const T> tp=dynamic_pointer_cast<const T>(ip);
+template<class T, class I> shared_ptr<const T> dynamic_pointer_extract(const shared_ptr<const I>& ip) {
+    shared_ptr<const T> tp=dynamic_pointer_cast<const T>(ip);
     if(tp) { return tp; }
     tp=static_pointer_cast<const T>(dynamic_pointer_cast<const Wrapper<T,I>>(ip));
     if(tp) { return tp; }
-    SharedPointer<const WritableInterface> wp=dynamic_pointer_cast<const WritableInterface>(ip);
+    shared_ptr<const WritableInterface> wp=dynamic_pointer_cast<const WritableInterface>(ip);
     return tp;
 }
 

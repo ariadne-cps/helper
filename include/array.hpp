@@ -43,7 +43,6 @@
 
 namespace Utility {
 
-using SizeType=std::size_t;
 template<class T> using InitializerList=std::initializer_list<T>;
 class ExactDouble;
 

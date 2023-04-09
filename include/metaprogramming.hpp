@@ -38,10 +38,6 @@
 
 namespace Utility {
 
-typedef void Void;
-typedef bool Bool;
-typedef std::size_t SizeType;
-
 using std::declval;
 
 using True = std::true_type;
