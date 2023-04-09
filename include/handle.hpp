@@ -38,10 +38,9 @@
 #include "stdlib.hpp"
 #include "metaprogramming.hpp"
 #include "writable.hpp"
+#include "declarations.hpp"
 
 namespace Utility {
-
-template<class T> using SharedPointer = std::shared_ptr<T>;
 
 /************ Handle *********************************************************/
 
@@ -106,7 +105,7 @@ template<class I> class Handle {
     SharedPointer<I> managed_pointer() { make_unique(); return _ptr; }
   protected:
     template<class II> static Void _make_unique(SharedPointer<II>& ptr) {
-        ptr=SharedPointer<I>(ptr->_copy()); }
+        ptr=SharedPointer<I>(ptr->clone()); }
     template<class II> static Void _make_unique(SharedPointer<const II>&) { }
     void make_unique() { _make_unique(_ptr); }
   private:
