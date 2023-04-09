@@ -39,6 +39,7 @@
 namespace Utility {
 
 using std::declval;
+using std::size_t;
 
 using True = std::true_type;
 using False = std::false_type;
