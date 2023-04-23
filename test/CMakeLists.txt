@@ -3,6 +3,7 @@ include(CTest)
 set(UNIT_TESTS
     test_array
     test_container
+    test_lazy
     test_lru_cache
     test_stack_trace
     test_randomiser
