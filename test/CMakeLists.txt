@@ -5,6 +5,7 @@ set(UNIT_TESTS
     test_container
     test_lru_cache
     test_stack_trace
+    test_randomiser
     test_stopwatch
 )
 

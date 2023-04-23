@@ -34,34 +34,46 @@
 #ifndef UTILITY_RANDOMISER_HPP
 #define UTILITY_RANDOMISER_HPP
 
-#include <cstdlib>
-#include <time.h>
+#include <random>
 
 namespace Utility {
 
-template<class T> struct Randomiser;
-
-template<> struct Randomiser<double> {
-    //! \get Return a value between 0 and \a value
-    static double get(double min, double max) {
-        return ((max-min)*static_cast<size_t>(rand())/RAND_MAX + min);
-    }
+template<class T> class RandomiserInterface {
+  public:
+    virtual T get() = 0;
 };
 
-template<> struct Randomiser<size_t> {
-    //! \get Return a value between 0 and \a value
-    static size_t get(size_t const& min, size_t const& max) {
-        return size_t(min + static_cast<size_t>(rand()) % (max-min+1));
+template<class T> class RandomiserBase : public RandomiserInterface<T> {
+  protected:
+    RandomiserBase() {
+        std::random_device rd;
+        std::mt19937::result_type seed = rd() ^ (
+                (std::mt19937::result_type) std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count() +
+                (std::mt19937::result_type) std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count()
+                );
+
+        _engine = std::mt19937(seed);
     }
+
+    std::mt19937 _engine;
+};
+
+template<class T> struct UniformRealRandomiser : public RandomiserBase<T> {
+  public:
+    UniformRealRandomiser(T min, T max) : RandomiserBase<T>(), _distribution(min,max) { }
+    T get() override { return _distribution(this->_engine); }
+  private:
+    std::uniform_real_distribution<T> _distribution;
+};
+
+template<class T> struct UniformIntRandomiser : public RandomiserBase<T> {
+  public:
+    UniformIntRandomiser(T min, T max) : RandomiserBase<T>(), _distribution(min,max) { }
+    T get() override { return _distribution(this->_engine); }
+  private:
+    std::uniform_int_distribution<T> _distribution;
 };
 
 } // namespace Utility
-
-inline bool _init_randomiser() {
-    srand(static_cast<unsigned int>(time(nullptr)));
-    return true;
-}
-
-static const bool init_randomiser = _init_randomiser();
 
 #endif /* UTILITY_RANDOMISER_HPP */
