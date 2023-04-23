@@ -44,6 +44,8 @@ class TestRandomiser {
     TestRandomiser(size_t num_tries) : _num_tries(num_tries) { }
 
     void test_int() {
+        RandomGenerator generator;
+
         auto rnd = UniformIntRandomiser<unsigned int>(0,255);
 
         List<unsigned int> values;
@@ -54,6 +56,8 @@ class TestRandomiser {
     }
 
     void test_real() {
+        RandomGenerator generator;
+
         auto rnd = UniformRealRandomiser<double>(0.0,1.0);
 
         List<double> values;
