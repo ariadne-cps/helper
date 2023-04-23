@@ -51,10 +51,10 @@ class TestLazy {
 
     void test_creation() {
         double arg = 2.0;
-        Lazy<TestClass> lazy([arg]{ return TestClass(arg); });
+        Lazy<TestClass> lazy([arg]{ return new TestClass(arg); });
 
         UTILITY_TEST_PRINT("Lazy created")
-        TestClass obj = lazy.get();
+        TestClass obj = lazy();
         UTILITY_TEST_EQUAL(obj.value(),4.0)
     }
 

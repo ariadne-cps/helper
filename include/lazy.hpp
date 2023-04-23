@@ -34,18 +34,21 @@
 #define UTILITY_LAZY_HPP
 
 #include <functional>
+#include <memory>
 
 namespace Utility {
 
 using std::function;
+using std::shared_ptr;
 
 template<class O>
 class Lazy {
   public:
-    O get() { return _func(); };
-    Lazy(function<O()> func) : _func(func) { }
+    O const& operator()() const { if (_obj == nullptr) _obj.reset(_func()); return *_obj; };
+    Lazy(function<O*()> func) : _func(func) { }
   private:
-    function<O()> _func;
+    function<O*()> _func;
+    mutable shared_ptr<O> _obj;
 };
 
 } // namespace Utility
