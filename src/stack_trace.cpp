@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@
 #include <dlfcn.h>
 #include <cxxabi.h>
 
-namespace Utility {
+namespace Helper {
 
 void stack_trace() {
     static const unsigned int CALLSTACK_SIZE = 128;
@@ -63,11 +63,11 @@ void stack_trace() {
     free(symbols);
 }
 
-} // namespace Utility
+} // namespace Helper
 
 #else /* ENABLE_STACK_TRACE */
 
-namespace Utility {
+namespace Helper {
 
 void stack_trace() { }
 

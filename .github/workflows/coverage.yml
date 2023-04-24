@@ -26,7 +26,7 @@ jobs:
 
     - name: Configure CMake
       working-directory: ${{runner.workspace}}/build
-      run: cmake ${{runner.workspace}}/utility -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=g++-11 -G "Ninja" -DCOVERAGE=ON
+      run: cmake ${{runner.workspace}}/helper -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=g++-11 -G "Ninja" -DCOVERAGE=ON
 
     - name: Build
       working-directory: ${{runner.workspace}}/build
@@ -37,7 +37,7 @@ jobs:
       run: ctest -j $($NPROC) --output-on-failure
 
     - name: Generate Code Coverage
-      working-directory: ${{runner.workspace}}/utility
+      working-directory: ${{runner.workspace}}/helper
       run: |
         lcov --directory ${{runner.workspace}}/build --capture --output-file coverage.info
         lcov --remove coverage.info '/usr/*' --output-file coverage.info

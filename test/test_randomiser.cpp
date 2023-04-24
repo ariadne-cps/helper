@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@
 
 #include "test.hpp"
 
-using namespace Utility;
+using namespace Helper;
 using namespace std;
 
 class TestRandomiser {
@@ -52,7 +52,7 @@ class TestRandomiser {
         for (size_t i=0; i<_num_tries; ++i)
             values.push_back(rnd.get());
 
-        UTILITY_TEST_PRINT(values)
+        HELPER_TEST_PRINT(values)
     }
 
     void test_real() {
@@ -64,17 +64,17 @@ class TestRandomiser {
         for (size_t i=0; i<_num_tries; ++i)
             values.push_back(rnd.get());
 
-        UTILITY_TEST_PRINT(values)
+        HELPER_TEST_PRINT(values)
     }
 
     void test() {
-        UTILITY_TEST_CALL(test_int());
-        UTILITY_TEST_CALL(test_real());
+        HELPER_TEST_CALL(test_int());
+        HELPER_TEST_CALL(test_real());
     }
 
 };
 
 int main() {
     TestRandomiser(10).test();
-    return UTILITY_TEST_FAILURES;
+    return HELPER_TEST_FAILURES;
 }

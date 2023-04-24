@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@
 
 #include "test.hpp"
 
-using namespace Utility;
+using namespace Helper;
 
 struct TestConvertibleTo {
     TestConvertibleTo(int a_) : a(a_) { }
@@ -52,24 +52,24 @@ class TestArray {
     void test_convert() {
         Array<TestClass> tca = {TestClass(1), TestClass(2)};
         Array<TestConvertibleTo> tcta = {TestConvertibleTo(1), TestConvertibleTo(2)};
-        UTILITY_TEST_EXECUTE(Array<TestClass> tcac(tcta));
+        HELPER_TEST_EXECUTE(Array<TestClass> tcac(tcta));
     }
 
     void test_print() {
         Array<int> a1;
-        UTILITY_TEST_PRINT(a1);
+        HELPER_TEST_PRINT(a1);
         Array<int> a2 = {1, 2};
-        UTILITY_TEST_PRINT(a2);
+        HELPER_TEST_PRINT(a2);
     }
 
     void test() {
-        UTILITY_TEST_CALL(test_convert());
-        UTILITY_TEST_CALL(test_print());
+        HELPER_TEST_CALL(test_convert());
+        HELPER_TEST_CALL(test_print());
     }
 
 };
 
 int main() {
     TestArray().test();
-    return UTILITY_TEST_FAILURES;
+    return HELPER_TEST_FAILURES;
 }

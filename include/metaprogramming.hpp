@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,13 +30,13 @@
  *  \brief Classes for template metaprogramming.
  */
 
-#ifndef UTILITY_METAPROGRAMMING_HPP
-#define UTILITY_METAPROGRAMMING_HPP
+#ifndef HELPER_METAPROGRAMMING_HPP
+#define HELPER_METAPROGRAMMING_HPP
 
 #include <type_traits>
 #include <concepts>
 
-namespace Utility {
+namespace Helper {
 
 using std::declval;
 using std::size_t;
@@ -185,6 +185,6 @@ template<class A1, class A2> concept CanMultiply = requires(A1 a1, A2 a2) { { a1
 template<class A1, class A2> concept CanDivide = requires(A1 a1, A2 a2) { { a1/a2 }; };
 
 
-} // namespace Utility
+} // namespace Helper
 
 #endif

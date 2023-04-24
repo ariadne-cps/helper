@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,157 +33,157 @@
 
 
 
-#ifndef UTILITY_MACROS_HPP
-#define UTILITY_MACROS_HPP
+#ifndef HELPER_MACROS_HPP
+#define HELPER_MACROS_HPP
 
 #include <sstream>
 #include <stdexcept>
 
-#define UTILITY_USING_CONSTRUCTORS(Class,Base) \
+#define HELPER_USING_CONSTRUCTORS(Class,Base) \
     template<class T,typename std::enable_if<std::is_convertible<T,Base>::value,int>::type=0> \
     Class(const T& t) : Base(t) { } \
     template<class T,typename std::enable_if<std::is_constructible<T,Base>::value and not std::is_convertible<T,Base>::value,int>::type=0> \
     explicit Class(const T& t) : Base(t) { } \
     template<class ...Args> Class(Args&&... args) : Base(std::forward<Args>(args)...) { } \
 
-#define UTILITY_THROW(except,func,msg)          \
+#define HELPER_THROW(except,func,msg)          \
     { \
         std::ostringstream ss; \
         ss << #except " in " << func << ": " << msg;    \
         throw except(ss.str()); \
     } \
 
-#define UTILITY_ASSERT(expression) \
+#define HELPER_ASSERT(expression) \
     { \
         bool assertion_result = static_cast<bool>(expression); \
         if(!assertion_result) { \
-            UTILITY_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<__FUNCTION__,"Assertion `" << #expression << "' failed."); \
+            HELPER_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<__FUNCTION__,"Assertion `" << #expression << "' failed."); \
         } \
     } \
 
 
 #ifndef NDEBUG
-#define UTILITY_DEBUG_ASSERT_MSG(expression,error) \
+#define HELPER_DEBUG_ASSERT_MSG(expression,error) \
     { \
         bool assertion_result = static_cast<bool>(expression); \
         if(!assertion_result) { \
-            UTILITY_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<UTILITY_PRETTY_FUNCTION,"Assertion `" << #expression << "' failed.\n"<<"  "<<error); \
+            HELPER_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<HELPER_PRETTY_FUNCTION,"Assertion `" << #expression << "' failed.\n"<<"  "<<error); \
         } \
     } \
 
 #else
-#define UTILITY_DEBUG_ASSERT_MSG(expression,error) \
+#define HELPER_DEBUG_ASSERT_MSG(expression,error) \
     { }
 #endif
 
 
 #ifndef NDEBUG
-#define UTILITY_DEBUG_ASSERT(expression) \
+#define HELPER_DEBUG_ASSERT(expression) \
     { \
         bool assertion_result = static_cast<bool>(expression); \
         if(!assertion_result) { \
-            UTILITY_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<__FUNCTION__,"Assertion `" << #expression << "' failed."); \
+            HELPER_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<__FUNCTION__,"Assertion `" << #expression << "' failed."); \
         } \
     } \
 
 #else
-#define UTILITY_DEBUG_ASSERT(expression) \
+#define HELPER_DEBUG_ASSERT(expression) \
     { }
 #endif
 
 
-#define UTILITY_PRECONDITION_MSG(expression,error)             \
+#define HELPER_PRECONDITION_MSG(expression,error)             \
     { \
         bool assertion_result = static_cast<bool>(expression); \
         if(!assertion_result) { \
-            UTILITY_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<UTILITY_PRETTY_FUNCTION,"Precondition `" << #expression << "' failed.\n"<<"  "<<error); \
+            HELPER_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<HELPER_PRETTY_FUNCTION,"Precondition `" << #expression << "' failed.\n"<<"  "<<error); \
         } \
     } \
 
-#define UTILITY_PRECONDITION(expression)             \
+#define HELPER_PRECONDITION(expression)             \
     { \
         bool assertion_result = static_cast<bool>(expression); \
         if(!assertion_result) { \
-            UTILITY_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<UTILITY_PRETTY_FUNCTION,"Precondition `" << #expression << "' failed."); \
+            HELPER_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<HELPER_PRETTY_FUNCTION,"Precondition `" << #expression << "' failed."); \
         } \
     } \
 
 #ifndef NDEBUG
-#define UTILITY_DEBUG_PRECONDITION(expression) \
+#define HELPER_DEBUG_PRECONDITION(expression) \
     { \
         bool result = static_cast<bool>(expression); \
         if(!result) { \
-            UTILITY_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<__FUNCTION__,"Precondition `" << #expression << "' failed."); \
+            HELPER_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<__FUNCTION__,"Precondition `" << #expression << "' failed."); \
         } \
     } \
 
 #else
-#define UTILITY_DEBUG_PRECONDITION(expression) \
+#define HELPER_DEBUG_PRECONDITION(expression) \
     { }
 #endif
 
-#define UTILITY_FAIL_MSG(error)             \
+#define HELPER_FAIL_MSG(error)             \
     { \
-        UTILITY_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<UTILITY_PRETTY_FUNCTION,"ErrorTag "<<error); \
+        HELPER_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<HELPER_PRETTY_FUNCTION,"ErrorTag "<<error); \
     } \
 
-#define UTILITY_ASSERT_MSG(expression,error)             \
+#define HELPER_ASSERT_MSG(expression,error)             \
     { \
         bool assertion_result = static_cast<bool>(expression); \
         if(!assertion_result) { \
-            UTILITY_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<UTILITY_PRETTY_FUNCTION,"Assertion `" << #expression << "' failed.\n"<<"  "<<error); \
+            HELPER_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<HELPER_PRETTY_FUNCTION,"Assertion `" << #expression << "' failed.\n"<<"  "<<error); \
         } \
     } \
 
-#define UTILITY_ASSERT_EQUAL(expression1,expression2)    \
+#define HELPER_ASSERT_EQUAL(expression1,expression2)    \
     { \
         bool assertion_result = static_cast<bool>((expression1) == (expression2));       \
         if(!assertion_result) { \
-            UTILITY_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<UTILITY_PRETTY_FUNCTION,"Assertion `" << #expression1 << "==" << #expression2 << "' failed.\n"<<"  "<<expression1<<" != "<<expression2); \
+            HELPER_THROW(std::runtime_error,__FILE__<<":"<<__LINE__<<": "<<HELPER_PRETTY_FUNCTION,"Assertion `" << #expression1 << "==" << #expression2 << "' failed.\n"<<"  "<<expression1<<" != "<<expression2); \
         } \
     } \
 
-#define UTILITY_NOT_IMPLEMENTED                 \
-    throw std::runtime_error(StringType("Not implemented: ")+UTILITY_PRETTY_FUNCTION);
+#define HELPER_NOT_IMPLEMENTED                 \
+    throw std::runtime_error(StringType("Not implemented: ")+HELPER_PRETTY_FUNCTION);
 
-#define UTILITY_DEPRECATED(fn,msg)          \
+#define HELPER_DEPRECATED(fn,msg)          \
     static bool first_time=true; \
     if(first_time) { \
         first_time=false; \
         std::cerr << "DEPRECATED: Function " << #fn << " is deprecated. " << #msg << std::endl; \
     } \
 
-#define UTILITY_NOTIFY(msg)          \
+#define HELPER_NOTIFY(msg)          \
     {                                                                \
         std::cerr << "NOTIFICATION: " << msg << "" << std::endl;                \
     }
 
-#define UTILITY_WARN(msg)          \
+#define HELPER_WARN(msg)          \
     {                                                                \
         std::cerr << "WARNING: " << msg << "" << std::endl;                \
     }
 
-#define UTILITY_WARN_ONCE(msg)          \
+#define HELPER_WARN_ONCE(msg)          \
     static bool first_time=true; \
     if(first_time) { \
         first_time=false; \
         std::cerr << "WARNING: " << msg << "" << std::endl; \
     } \
 
-#define UTILITY_ERROR(msg)          \
+#define HELPER_ERROR(msg)          \
     {                                                                \
         std::cerr << "ERROR: " << msg << "" << std::endl;                \
     }
                                                                   \
 #if defined(linux) || defined(__linux) || defined(__linux__)
-#define UTILITY_PRETTY_FUNCTION __PRETTY_FUNCTION__
+#define HELPER_PRETTY_FUNCTION __PRETTY_FUNCTION__
 #elif defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
-#define UTILITY_PRETTY_FUNCTION __FUNCTION__
+#define HELPER_PRETTY_FUNCTION __FUNCTION__
 #elif defined(darwin) || defined(__darwin) || defined(__darwin__) || defined(__APPLE__)
-#define UTILITY_PRETTY_FUNCTION __PRETTY_FUNCTION__
+#define HELPER_PRETTY_FUNCTION __PRETTY_FUNCTION__
 #else
-#define UTILITY_PRETTY_FUNCTION ""
+#define HELPER_PRETTY_FUNCTION ""
 #endif
 
 
-#endif // UTILITY_MACROS_HPP
+#endif // HELPER_MACROS_HPP

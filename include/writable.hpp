@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,12 +30,12 @@
  *  \brief
  */
 
-#ifndef UTILITY_WRITABLE_HPP
-#define UTILITY_WRITABLE_HPP
+#ifndef HELPER_WRITABLE_HPP
+#define HELPER_WRITABLE_HPP
 
 #include "metaprogramming.hpp"
 
-namespace Utility {
+namespace Helper {
 
 using std::ostream;
 
@@ -100,6 +100,6 @@ template<class T> WritableTemporary<T> Writer<T>::operator() (T const& t) const 
 
 template<class T> class RepresentationWriter;
 
-} // namespace Utility
+} // namespace Helper
 
 #endif

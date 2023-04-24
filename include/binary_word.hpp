@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -52,7 +52,7 @@
  * using a binary tree representation.
  *
  * The main intended use of these classes is to represent
- * sets as unions of rectangles on a grid. See the file utility/grid_box.hpp
+ * sets as unions of rectangles on a grid. See the file Helper/grid_box.hpp
  * for the implementation of this representation.
  * The basic idea is that a inside of Euclidean space contained in some
  * cuboid R can be represented by a union of sets obtained by repeatedly
@@ -71,8 +71,8 @@
  * for big grids or fine subdivisions, memory may well be a limiting factor.
  */
 
-#ifndef UTILITY_BINARY_WORD_HPP
-#define UTILITY_BINARY_WORD_HPP
+#ifndef HELPER_BINARY_WORD_HPP
+#define HELPER_BINARY_WORD_HPP
 
 #include <limits>
 #include <vector>
@@ -82,7 +82,7 @@
 #include "macros.hpp"
 #include "stlio.hpp"
 
-namespace Utility {
+namespace Helper {
 
 using std::ostream;
 using std::istream;
@@ -237,6 +237,6 @@ inline ostream& operator<<(ostream& os, const BinaryWord& bw) {
     return os;
 }
 
-} // namespace Utility
+} // namespace Helper
 
-#endif /* UTILITY_BINARY_WORD_HPP */
+#endif /* HELPER_BINARY_WORD_HPP */

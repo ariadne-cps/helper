@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,13 +26,13 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef UTILITY_STACK_TRACE
-#define UTILITY_STACK_TRACE
+#ifndef HELPER_STACK_TRACE
+#define HELPER_STACK_TRACE
 
-namespace Utility {
+namespace Helper {
 
 void stack_trace();
 
-} // namespace Utility
+} // namespace Helper
 
 #endif

@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,8 +30,8 @@
  *  \brief
  */
 
-#ifndef UTILITY_HANDLE_HPP
-#define UTILITY_HANDLE_HPP
+#ifndef HELPER_HANDLE_HPP
+#define HELPER_HANDLE_HPP
 
 #include <memory>
 
@@ -39,7 +39,7 @@
 #include "metaprogramming.hpp"
 #include "writable.hpp"
 
-namespace Utility {
+namespace Helper {
 
 using std::shared_ptr;
 
@@ -180,6 +180,6 @@ template<class T, class I> shared_ptr<const T> dynamic_pointer_extract(const sha
 }
 
 
-} // namespace Utility
+} // namespace Helper
 
 #endif

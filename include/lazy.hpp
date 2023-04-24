@@ -30,13 +30,13 @@
  *  \brief Class for holding objects that are lazily retrieved.
  */
 
-#ifndef UTILITY_LAZY_HPP
-#define UTILITY_LAZY_HPP
+#ifndef HELPER_LAZY_HPP
+#define HELPER_LAZY_HPP
 
 #include <functional>
 #include <memory>
 
-namespace Utility {
+namespace Helper {
 
 using std::function;
 using std::shared_ptr;
@@ -51,6 +51,6 @@ class Lazy {
     mutable shared_ptr<O> _obj;
 };
 
-} // namespace Utility
+} // namespace Helper
 
-#endif // UTILITY_LAZY_HPP
+#endif // HELPER_LAZY_HPP

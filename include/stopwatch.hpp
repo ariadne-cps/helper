@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,12 +30,12 @@
  *  \brief Stopwatch class to be used for profiling execution times.
  */
 
-#ifndef UTILITY_STOPWATCH_HPP
-#define UTILITY_STOPWATCH_HPP
+#ifndef HELPER_STOPWATCH_HPP
+#define HELPER_STOPWATCH_HPP
 
 #include <chrono>
 
-namespace Utility {
+namespace Helper {
 
 using Seconds = std::chrono::seconds;
 using Milliseconds = std::chrono::milliseconds;
@@ -63,6 +63,6 @@ private:
     TimePointType _clicked;
 };
 
-} // namespace Utility
+} // namespace Helper
 
-#endif /* UTILITY_STOPWATCH_HPP */
+#endif /* HELPER_STOPWATCH_HPP */

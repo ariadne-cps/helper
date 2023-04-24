@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@
 
 #include "test.hpp"
 
-using namespace Utility;
+using namespace Helper;
 using namespace std::chrono_literals;
 
 class TestStopwatch {
@@ -46,18 +46,18 @@ class TestStopwatch {
         Stopwatch<Microseconds> sw;
         std::this_thread::sleep_for(10ms);
         auto duration = sw.click().duration();
-        UTILITY_TEST_ASSERT(duration.count()>10000);
-        UTILITY_TEST_ASSERT(sw.elapsed_seconds() > 0.01);
+        HELPER_TEST_ASSERT(duration.count()>10000);
+        HELPER_TEST_ASSERT(sw.elapsed_seconds() > 0.01);
     }
 
     void test() {
-        UTILITY_TEST_CALL(test_create());
-        UTILITY_TEST_CALL(test_duration());
+        HELPER_TEST_CALL(test_create());
+        HELPER_TEST_CALL(test_duration());
     }
 
 };
 
 int main() {
     TestStopwatch().test();
-    return UTILITY_TEST_FAILURES;
+    return HELPER_TEST_FAILURES;
 }

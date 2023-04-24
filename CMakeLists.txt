@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.9)
 
-project(Utility VERSION 1.0)
+project(Helper VERSION 1.0)
 
 option(COVERAGE "Enable coverage reporting" OFF)
 
@@ -53,11 +53,11 @@ endif()
 
 include_directories(SYSTEM ${PROJECT_SOURCE_DIR}/include)
 
-if(NOT TARGET utility)
+if(NOT TARGET helper)
     add_subdirectory(src)
 
-    add_library(utility ${LIBRARY_KIND} $<TARGET_OBJECTS:UTILITY_SRC>)
-    target_link_libraries(utility)
+    add_library(helper ${LIBRARY_KIND} $<TARGET_OBJECTS:HELPER_SRC>)
+    target_link_libraries(helper)
 
     if(NOT TARGET tests)
 

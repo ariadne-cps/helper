@@ -1,4 +1,4 @@
-set(LIBRARY_NAME UTILITY_SRC)
+set(LIBRARY_NAME HELPER_SRC)
 
 add_library(${LIBRARY_NAME} OBJECT
         stack_trace.cpp

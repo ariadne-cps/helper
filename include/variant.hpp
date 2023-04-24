@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,14 +32,14 @@
 
 
 
-#ifndef UTILITY_VARIANT_HPP
-#define UTILITY_VARIANT_HPP
+#ifndef HELPER_VARIANT_HPP
+#define HELPER_VARIANT_HPP
 
 #include <variant>
 
 #include "metaprogramming.hpp"
 
-namespace Utility {
+namespace Helper {
 
 //! Internal alias for standard variant.
 template<class... TS> using Variant = std::variant<TS...>;
@@ -54,6 +54,6 @@ template<class C, class... TS> class CodedVariant {
 };
 template<class T, class C, class... TS> bool holds_alternative(CodedVariant<C,TS...> const& var) { return var.code()==T::code(); }
 
-} // namespace Utility
+} // namespace Helper
 
 #endif

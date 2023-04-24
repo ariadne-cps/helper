@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@
 
 #include "test.hpp"
 
-using namespace Utility;
+using namespace Helper;
 
 struct TestClass {
     void method() {
@@ -52,13 +52,13 @@ class TestLRUCache {
     }
 
     void test() {
-        UTILITY_TEST_CALL(test_free_function());
-        UTILITY_TEST_CALL(test_class_method());
+        HELPER_TEST_CALL(test_free_function());
+        HELPER_TEST_CALL(test_class_method());
     }
 
 };
 
 int main() {
     TestLRUCache().test();
-    return UTILITY_TEST_FAILURES;
+    return HELPER_TEST_FAILURES;
 }

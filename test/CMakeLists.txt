@@ -12,7 +12,7 @@ set(UNIT_TESTS
 
 foreach(TEST ${UNIT_TESTS})
     add_executable(${TEST} ${TEST}.cpp)
-    target_link_libraries(${TEST} utility)
+    target_link_libraries(${TEST} helper)
     add_test(${TEST} ${TEST})
 endforeach()
 

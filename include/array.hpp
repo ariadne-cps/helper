@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,8 +32,8 @@
 
 
 
-#ifndef UTILITY_ARRAY_HPP
-#define UTILITY_ARRAY_HPP
+#ifndef HELPER_ARRAY_HPP
+#define HELPER_ARRAY_HPP
 
 #include <initializer_list>
 #include <iterator>
@@ -41,7 +41,7 @@
 #include <cassert>
 #include "metaprogramming.hpp"
 
-namespace Utility {
+namespace Helper {
 
 using std::size_t;
 
@@ -263,6 +263,6 @@ inline Array<size_t> complement(size_t nmax, Array<size_t> vars) {
     return cmpl;
 }
 
-} // namespace Utility
+} // namespace Helper
 
 #endif

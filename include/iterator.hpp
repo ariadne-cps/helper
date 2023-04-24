@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,12 +30,12 @@
  *  \brief Iterator support, similar to Boost's iterator package.
  */
 
-#ifndef UTILITY_ITERATOR_HPP
-#define UTILITY_ITERATOR_HPP
+#ifndef HELPER_ITERATOR_HPP
+#define HELPER_ITERATOR_HPP
 
 #include <iterator>
 
-namespace Utility {
+namespace Helper {
 
 using std::ostream;
 
@@ -144,6 +144,6 @@ template<class I1, class I2> inline auto PairIterator<I1,I2>::dereference() -> R
 template<class I1, class I2> ostream& operator<<(ostream& os, const PairIterator<I1,I2>& e) {
     return os << "{" << e._iter1 << "," << e._iter2 << "}"; }
 
-} // namespace Utility
+} // namespace Helper
 
-#endif /* UTILITY_ITERATOR_HPP */
+#endif /* HELPER_ITERATOR_HPP */

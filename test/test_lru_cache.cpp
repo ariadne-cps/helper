@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@
 
 #include "test.hpp"
 
-using namespace Utility;
+using namespace Helper;
 
 using CacheType = LRUCache<String,int>;
 
@@ -41,38 +41,38 @@ class TestLRUCache {
   public:
 
     void test_construct() {
-        UTILITY_TEST_FAIL(CacheType(0));
+        HELPER_TEST_FAIL(CacheType(0));
         CacheType cache(1);
-        UTILITY_TEST_EQUALS(cache.current_size(),0);
-        UTILITY_TEST_EQUALS(cache.maximum_size(),1);
+        HELPER_TEST_EQUALS(cache.current_size(),0);
+        HELPER_TEST_EQUALS(cache.maximum_size(),1);
     }
 
     void test_find() {
         CacheType cache(2);
-        UTILITY_TEST_ASSERT(not cache.has_label("something"));
+        HELPER_TEST_ASSERT(not cache.has_label("something"));
     }
 
     void test_get_failure() {
         CacheType cache(2);
-        UTILITY_TEST_FAIL(cache.get("something"));
+        HELPER_TEST_FAIL(cache.get("something"));
     }
 
     void test_put_single() {
         CacheType cache(2);
         cache.put("first",42);
-        UTILITY_TEST_EQUALS(cache.current_size(),1);
-        UTILITY_TEST_EQUALS(cache.age("first"),0);
+        HELPER_TEST_EQUALS(cache.current_size(),1);
+        HELPER_TEST_EQUALS(cache.age("first"),0);
         auto val = cache.get("first");
-        UTILITY_TEST_EQUALS(val,42);
+        HELPER_TEST_EQUALS(val,42);
     }
 
     void test_put_multiple() {
         CacheType cache(2);
         cache.put("first",42);
         cache.put("second",10);
-        UTILITY_TEST_EQUALS(cache.current_size(),2);
-        UTILITY_TEST_EQUALS(cache.age("first"),1);
-        UTILITY_TEST_EQUALS(cache.age("second"),0);
+        HELPER_TEST_EQUALS(cache.current_size(),2);
+        HELPER_TEST_EQUALS(cache.age("first"),1);
+        HELPER_TEST_EQUALS(cache.age("second"),0);
     }
 
     void test_put_multiple_over() {
@@ -81,11 +81,11 @@ class TestLRUCache {
         cache.put("second",10);
         cache.put("third",5);
         cache.put("fourth",12);
-        UTILITY_TEST_EQUALS(cache.current_size(),3);
-        UTILITY_TEST_ASSERT(not cache.has_label("first"));
-        UTILITY_TEST_EQUALS(cache.age("second"),2);
-        UTILITY_TEST_EQUALS(cache.age("third"),1);
-        UTILITY_TEST_EQUALS(cache.age("fourth"),0);
+        HELPER_TEST_EQUALS(cache.current_size(),3);
+        HELPER_TEST_ASSERT(not cache.has_label("first"));
+        HELPER_TEST_EQUALS(cache.age("second"),2);
+        HELPER_TEST_EQUALS(cache.age("third"),1);
+        HELPER_TEST_EQUALS(cache.age("fourth"),0);
     }
 
     void test_get() {
@@ -95,25 +95,25 @@ class TestLRUCache {
         cache.put("third",5);
         cache.put("fourth",12);
         cache.get("second");
-        UTILITY_TEST_EQUALS(cache.age("second"),0);
-        UTILITY_TEST_EQUALS(cache.age("first"),3);
-        UTILITY_TEST_EQUALS(cache.age("third"),2);
-        UTILITY_TEST_EQUALS(cache.age("fourth"),1);
+        HELPER_TEST_EQUALS(cache.age("second"),0);
+        HELPER_TEST_EQUALS(cache.age("first"),3);
+        HELPER_TEST_EQUALS(cache.age("third"),2);
+        HELPER_TEST_EQUALS(cache.age("fourth"),1);
     }
 
     void test() {
-        UTILITY_TEST_CALL(test_construct());
-        UTILITY_TEST_CALL(test_find());
-        UTILITY_TEST_CALL(test_get_failure());
-        UTILITY_TEST_CALL(test_put_single());
-        UTILITY_TEST_CALL(test_put_multiple());
-        UTILITY_TEST_CALL(test_put_multiple_over());
-        UTILITY_TEST_CALL(test_get());
+        HELPER_TEST_CALL(test_construct());
+        HELPER_TEST_CALL(test_find());
+        HELPER_TEST_CALL(test_get_failure());
+        HELPER_TEST_CALL(test_put_single());
+        HELPER_TEST_CALL(test_put_multiple());
+        HELPER_TEST_CALL(test_put_multiple_over());
+        HELPER_TEST_CALL(test_get());
     }
 
 };
 
 int main() {
     TestLRUCache().test();
-    return UTILITY_TEST_FAILURES;
+    return HELPER_TEST_FAILURES;
 }

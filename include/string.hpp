@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,13 +30,13 @@
  *  \brief Wrapper for string class
  */
 
-#ifndef UTILITY_STRING_HPP
-#define UTILITY_STRING_HPP
+#ifndef HELPER_STRING_HPP
+#define HELPER_STRING_HPP
 
 #include <string>
 #include <sstream>
 
-namespace Utility {
+namespace Helper {
 
 //! \brief A wrapper for the standard string class.
 class String : public std::string {
@@ -56,6 +56,6 @@ template<class T> inline String to_str(T const& t) {
 template<class T> String class_name();
 template<> inline String class_name<String>() { return "String"; }
 
-} // namespace Utility
+} // namespace Helper
 
-#endif /* UTILITY_STRING_HPP */
+#endif /* HELPER_STRING_HPP */

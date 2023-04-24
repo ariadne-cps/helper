@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,13 +31,13 @@
  *  \details The values are generated uniformly in the provided interval.
  */
 
-#ifndef UTILITY_RANDOMISER_HPP
-#define UTILITY_RANDOMISER_HPP
+#ifndef HELPER_RANDOMISER_HPP
+#define HELPER_RANDOMISER_HPP
 
 #include <random>
 #include <chrono>
 
-namespace Utility {
+namespace Helper {
 
 class RandomGenerator {
   public:
@@ -81,6 +81,6 @@ template<class T> struct UniformIntRandomiser : public RandomiserBase<T,std::uni
     UniformIntRandomiser(T min, T max) : RandomiserBase<T,std::uniform_int_distribution<T>>(min,max) { }
 };
 
-} // namespace Utility
+} // namespace Helper
 
-#endif /* UTILITY_RANDOMISER_HPP */
+#endif /* HELPER_RANDOMISER_HPP */

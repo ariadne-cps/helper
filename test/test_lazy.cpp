@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,13 +31,13 @@
 
 #include "test.hpp"
 
-using namespace Utility;
+using namespace Helper;
 
 class TestClass {
   public:
     TestClass(double a) {
         _value = a*a;
-        UTILITY_TEST_PRINT("TestClass object created")
+        HELPER_TEST_PRINT("TestClass object created")
     }
 
     double value() { return _value; }
@@ -53,18 +53,18 @@ class TestLazy {
         double arg = 2.0;
         Lazy<TestClass> lazy([arg]{ return new TestClass(arg); });
 
-        UTILITY_TEST_PRINT("Lazy created")
+        HELPER_TEST_PRINT("Lazy created")
         TestClass obj = lazy();
-        UTILITY_TEST_EQUAL(obj.value(),4.0)
+        HELPER_TEST_EQUAL(obj.value(),4.0)
     }
 
     void test() {
-        UTILITY_TEST_CALL(test_creation());
+        HELPER_TEST_CALL(test_creation());
     }
 
 };
 
 int main() {
     TestLazy().test();
-    return UTILITY_TEST_FAILURES;
+    return HELPER_TEST_FAILURES;
 }

@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,12 +27,12 @@
  */
 
 
-#ifndef UTILITY_VARIANT_INL_HPP
-#define UTILITY_VARIANT_INL_HPP
+#ifndef HELPER_VARIANT_INL_HPP
+#define HELPER_VARIANT_INL_HPP
 
 #include "variant.hpp"
 
-namespace Utility {
+namespace Helper {
 
 template<class V, class C>
 decltype(auto) coded_visit(V& v, C code) {
@@ -174,6 +174,6 @@ template<class C, class... TS> template<class V> inline decltype(auto) CodedVari
 }
 
 
-} // namespace Utility
+} // namespace Helper
 
 #endif

@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,12 +30,12 @@
  *  \brief Index ranges.
  */
 
-#ifndef UTILITY_RANGE_HPP
-#define UTILITY_RANGE_HPP
+#ifndef HELPER_RANGE_HPP
+#define HELPER_RANGE_HPP
 
 #include <cstddef>
 
-namespace Utility {
+namespace Helper {
 
 //! \ingroup LinearAlgebraModule
 //! \brief A range of integer values from a \em start value up to, but not including, a \em stop value.
@@ -63,6 +63,6 @@ struct RangeIterator {
 inline RangeIterator begin(Range rng) { return RangeIterator(rng.start()); }
 inline RangeIterator end(Range rng) { return RangeIterator(rng.stop()); }
 
-} // namespace Utility
+} // namespace Helper
 
-#endif // UTILITY_RANGE_HPP
+#endif // HELPER_RANGE_HPP

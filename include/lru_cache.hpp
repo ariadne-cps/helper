@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,13 +30,13 @@
  *  \brief A Least Recently Used cache for holding a limited number of commonly-accessed objects
  */
 
-#ifndef UTILITY_LRU_CACHE_HPP
-#define UTILITY_LRU_CACHE_HPP
+#ifndef HELPER_LRU_CACHE_HPP
+#define HELPER_LRU_CACHE_HPP
 
 #include <map>
 #include "macros.hpp"
 
-namespace Utility {
+namespace Helper {
 
 using std::size_t;
 
@@ -50,7 +50,7 @@ template<class L, class V> class LRUCache {
     };
   public:
     //! \brief Construct with a given \a maximum_size
-    LRUCache(size_t maximum_size) : _maximum_size(maximum_size) { UTILITY_PRECONDITION(maximum_size>0); }
+    LRUCache(size_t maximum_size) : _maximum_size(maximum_size) { HELPER_PRECONDITION(maximum_size>0); }
 
     //! \brief Check whether the label is present
     bool has_label(L const& label) { return (_elements.find(label) != _elements.end()); }
@@ -59,7 +59,7 @@ template<class L, class V> class LRUCache {
     //! \details Updates age accordingly
     V const& get(L const& label) {
         auto e = _elements.find(label);
-        UTILITY_ASSERT_MSG(e != _elements.end(), "Cache has no element for label " << label);
+        HELPER_ASSERT_MSG(e != _elements.end(), "Cache has no element for label " << label);
         for (auto& other : _elements) {
             if (other.second.age < e->second.age)
                 other.second.age++;
@@ -71,14 +71,14 @@ template<class L, class V> class LRUCache {
     //! \brief The age of a given \a label in the cache
     size_t age(L const& label) {
         auto e = _elements.find(label);
-        UTILITY_ASSERT_MSG(e != _elements.end(), "Cache has no element for label " << label);
+        HELPER_ASSERT_MSG(e != _elements.end(), "Cache has no element for label " << label);
         return e->second.age;
     }
 
     //! \brief Insert the element
     //! \details The element must not already exist; updates ages accordingly
     void put(L const& label, V const& val) {
-        UTILITY_PRECONDITION(not has_label(label));
+        HELPER_PRECONDITION(not has_label(label));
         if (_elements.size() < _maximum_size) {
             for (auto& other : _elements) other.second.age++;
         } else {
@@ -108,6 +108,6 @@ template<class L, class V> class LRUCache {
 };
 
 
-} // namespace Utility
+} // namespace Helper
 
-#endif // UTILITY_LRU_CACHE_HPP
+#endif // HELPER_LRU_CACHE_HPP

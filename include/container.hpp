@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,8 +32,8 @@
 
 
 
-#ifndef UTILITY_CONTAINER_HPP
-#define UTILITY_CONTAINER_HPP
+#ifndef HELPER_CONTAINER_HPP
+#define HELPER_CONTAINER_HPP
 
 #include "stdlib.hpp"
 
@@ -42,7 +42,7 @@
 #include "array.hpp"
 #include "macros.hpp"
 
-namespace Utility {
+namespace Helper {
 
 using std::make_tuple;
 using std::make_pair;
@@ -154,7 +154,7 @@ template<class T> class LinkedList
 };
 template<class T> inline ostream&
 operator<< (ostream &os, const std::list<T>& l) {
-    return Utility::write_sequence(os,l.begin(),l.end());
+    return Helper::write_sequence(os,l.begin(),l.end());
 }
 
 
@@ -255,17 +255,17 @@ template<class K, class T> class Map : public std::map<K,T> {
     using std::map<K,T>::map;
     using std::map<K,T>::insert;
     T& operator[](K k) { return this->std::map<K,T>::operator[](k); }
-    const T& operator[](K k) const { auto iter=this->find(k); UTILITY_ASSERT(iter!=this->end()); return iter->second; }
+    const T& operator[](K k) const { auto iter=this->find(k); HELPER_ASSERT(iter!=this->end()); return iter->second; }
     const T& get(const K& k) const { auto i=this->find(k);
-        UTILITY_ASSERT(i!=this->end()); return i->second; }
+        HELPER_ASSERT(i!=this->end()); return i->second; }
     bool has_key(const K& k) const {
         return this->find(k)!=this->end(); }
     T& value(const K& k) {
         auto iter=this->find(k);
-        UTILITY_ASSERT(iter!=this->end()); return iter->second; }
+        HELPER_ASSERT(iter!=this->end()); return iter->second; }
     const T& value(const K& k) const {
         auto iter=this->find(k);
-        UTILITY_ASSERT(iter!=this->end()); return iter->second; }
+        HELPER_ASSERT(iter!=this->end()); return iter->second; }
     void insert(const std::pair<K,T>& kv) {
         this->std::map<K,T>::insert(kv); }
     void insert(const K& k, const T& v) {
@@ -326,6 +326,6 @@ template<class T> inline List<T> make_list(const Set<T>& set) { return List<T>(s
 
 template<class T> inline Set<T> make_set(const std::vector<T>& lst) { return Set<T>(lst); }
 
-} // namespace Utility
+} // namespace Helper
 
 #endif

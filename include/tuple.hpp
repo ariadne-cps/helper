@@ -6,7 +6,7 @@
  ****************************************************************************/
 
 /*
- * This file is part of Utility, under the MIT license.
+ * This file is part of Helper, under the MIT license.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,13 +30,13 @@
  *  \brief Pair and Tuple types, and types to be used as lvalues in assignments.
  */
 
-#ifndef UTILITY_TUPLE_HPP
-#define UTILITY_TUPLE_HPP
+#ifndef HELPER_TUPLE_HPP
+#define HELPER_TUPLE_HPP
 
 #include <utility>
 #include <tuple>
 
-namespace Utility {
+namespace Helper {
 
 template<class T1, class T2> using Pair = std::pair<T1,T2>;
 using std::make_pair;
@@ -54,6 +54,6 @@ template<class T> inline decltype(auto) get_fourth(T&& t) { return std::get<3>(s
 template<class T> inline decltype(auto) get_fifth(T&& t) { return std::get<4>(std::forward<T>(t)); }
 
 
-} // namespace Utility
+} // namespace Helper
 
-#endif /* UTILITY_TUPLE_HPP */
+#endif /* HELPER_TUPLE_HPP */
