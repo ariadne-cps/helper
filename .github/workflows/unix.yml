@@ -31,19 +31,7 @@ jobs:
             cxx-cmd: "clang++-16"
           }
           - {
-            name: "Ubuntu 24.04 Clang 16 [Release]",
-            os: ubuntu-22.04,
-            cxx-pkg: "clang-16",
-            cxx-cmd: "clang++-16"
-          }
-          - {
             name: "Ubuntu 24.04 GCC 13 [Release]",
-            os: ubuntu-22.04,
-            cxx-pkg: "g++-13",
-            cxx-cmd: "g++-13"
-          }
-          - {
-            name: "Ubuntu 22.04 GCC 13 [Release]",
             os: ubuntu-24.04,
             cxx-pkg: "g++-13",
             cxx-cmd: "g++-13"
