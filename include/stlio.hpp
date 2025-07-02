@@ -219,7 +219,7 @@ operator<<(std::ostream &os, const std::pair<S,T>& s)
 template<class... TS> inline
 std::ostream& operator<<(std::ostream& os, std::tuple<TS...> const& tup) {
     typename std::tuple_size<std::tuple<TS...>>::type sz;
-    os << "("; write_tuple(os,tup,sz); os << ")"; return os;
+    os << "("; Helper::write_tuple(os,tup,sz); os << ")"; return os;
 }
 
 /*
