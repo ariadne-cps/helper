@@ -71,13 +71,14 @@ if(NOT TARGET helper)
     add_library(helper ${LIBRARY_KIND} $<TARGET_OBJECTS:HELPER_SRC>)
     target_link_libraries(helper)
 
-    if(NOT TARGET tests)
-        enable_testing()
-        add_subdirectory(test)
-    endif()
+    if(CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
+        if(NOT TARGET tests)
+            enable_testing()
+            add_subdirectory(test)
+        endif()
 
-    if(COVERAGE)
-        if(APPLE AND CMAKE_CXX_COMPILER_ID MATCHES "AppleClang|Clang")
+        if(COVERAGE)
+            if(APPLE AND CMAKE_CXX_COMPILER_ID MATCHES "AppleClang|Clang")
             setup_target_for_coverage_llvm(
                 NAME coverage
                 TARGET helper
@@ -95,10 +96,11 @@ if(NOT TARGET helper)
                     "${PROJECT_SOURCE_DIR}/src"
             )
         else()
-            setup_target_for_coverage_gcc(
-                NAME coverage
-                DEPENDENCIES tests
-            )
+                setup_target_for_coverage_gcc(
+                    NAME coverage
+                    DEPENDENCIES tests
+                )
+            endif()
         endif()
     endif()
 
