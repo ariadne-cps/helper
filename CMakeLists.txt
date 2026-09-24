@@ -6,6 +6,18 @@ option(COVERAGE "Enable coverage reporting" OFF)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
+if(COVERAGE)
+    if(APPLE AND CMAKE_CXX_COMPILER_ID MATCHES "AppleClang|Clang")
+        include(LLVMCodeCoverage)
+        append_llvm_coverage_compiler_flags()
+    elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+        include(GCCCodeCoverage)
+        append_gcc_coverage_compiler_flags()
+    else()
+        message(FATAL_ERROR "Coverage is supported only with GCC or macOS AppleClang/Clang.")
+    endif()
+endif()
+
 if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 19.20)
         message(FATAL_ERROR "MSVC version must be at least 19.20!")
@@ -60,14 +72,34 @@ if(NOT TARGET helper)
     target_link_libraries(helper)
 
     if(NOT TARGET tests)
-
-        if(COVERAGE)
-            include(CodeCoverage)
-            append_coverage_compiler_flags()
-        endif()
-
         enable_testing()
         add_subdirectory(test)
+    endif()
+
+    if(COVERAGE)
+        if(APPLE AND CMAKE_CXX_COMPILER_ID MATCHES "AppleClang|Clang")
+            setup_target_for_coverage_llvm(
+                NAME coverage
+                TARGET helper
+                OBJECTS
+                    test_array
+                    test_container
+                    test_lazy
+                    test_lru_cache
+                    test_stack_trace
+                    test_randomiser
+                    test_stopwatch
+                DEPENDENCIES tests
+                SOURCES
+                    "${PROJECT_SOURCE_DIR}/include"
+                    "${PROJECT_SOURCE_DIR}/src"
+            )
+        else()
+            setup_target_for_coverage_gcc(
+                NAME coverage
+                DEPENDENCIES tests
+            )
+        endif()
     endif()
 
 endif()
