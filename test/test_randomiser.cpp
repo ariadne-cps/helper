@@ -24,10 +24,10 @@
 
 #include <iostream>
 
-#include "randomiser.hpp"
-#include "container.hpp"
+#include "helper/randomiser.hpp"
+#include "helper/container.hpp"
 
-#include "test.hpp"
+#include "helper/test.hpp"
 
 using namespace Helper;
 using namespace std;

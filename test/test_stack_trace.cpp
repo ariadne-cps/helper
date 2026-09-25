@@ -24,9 +24,9 @@
 
 #include <iostream>
 
-#include "stack_trace.hpp"
+#include "helper/stack_trace.hpp"
 
-#include "test.hpp"
+#include "helper/test.hpp"
 
 using namespace Helper;
 

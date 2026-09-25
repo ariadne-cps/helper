@@ -32,7 +32,7 @@
 #include <cstring>
 #include <iostream>
 #include <exception>
-#include "macros.hpp"
+#include "helper/macros.hpp"
 
 int HELPER_TEST_FAILURES = 0;
 int HELPER_TEST_SKIPPED = 0;

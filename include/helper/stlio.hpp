@@ -41,8 +41,8 @@
 #include <set>
 #include <map>
 #include <memory>
-#include "array.hpp"
-#include "tuple.hpp"
+#include "helper/array.hpp"
+#include "helper/tuple.hpp"
 
 namespace Helper {
 

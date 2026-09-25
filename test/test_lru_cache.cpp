@@ -24,10 +24,10 @@
 
 #include <iostream>
 
-#include "string.hpp"
-#include "lru_cache.hpp"
+#include "helper/string.hpp"
+#include "helper/lru_cache.hpp"
 
-#include "test.hpp"
+#include "helper/test.hpp"
 
 using namespace Helper;
 

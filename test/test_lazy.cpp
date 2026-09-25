@@ -23,9 +23,9 @@
  */
 
 #include <iostream>
-#include "lazy.hpp"
+#include "helper/lazy.hpp"
 
-#include "test.hpp"
+#include "helper/test.hpp"
 
 using namespace Helper;
 

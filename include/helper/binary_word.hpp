@@ -75,8 +75,8 @@
 #include <iosfwd>
 #include <stdexcept>
 
-#include "macros.hpp"
-#include "stlio.hpp"
+#include "helper/macros.hpp"
+#include "helper/stlio.hpp"
 
 namespace Helper {
 

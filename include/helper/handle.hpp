@@ -31,9 +31,9 @@
 
 #include <memory>
 
-#include "stdlib.hpp"
-#include "metaprogramming.hpp"
-#include "writable.hpp"
+#include "helper/stdlib.hpp"
+#include "helper/metaprogramming.hpp"
+#include "helper/writable.hpp"
 
 namespace Helper {
 

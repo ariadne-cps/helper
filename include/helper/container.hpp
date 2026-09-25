@@ -31,12 +31,12 @@
 #ifndef HELPER_CONTAINER_HPP
 #define HELPER_CONTAINER_HPP
 
-#include "stdlib.hpp"
+#include "helper/stdlib.hpp"
 
-#include "metaprogramming.hpp"
-#include "stlio.hpp"
-#include "array.hpp"
-#include "macros.hpp"
+#include "helper/metaprogramming.hpp"
+#include "helper/stlio.hpp"
+#include "helper/array.hpp"
+#include "helper/macros.hpp"
 
 namespace Helper {
 

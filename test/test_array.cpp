@@ -24,10 +24,10 @@
 
 #include <iostream>
 
-#include "array.hpp"
-#include "container.hpp"
+#include "helper/array.hpp"
+#include "helper/container.hpp"
 
-#include "test.hpp"
+#include "helper/test.hpp"
 
 using namespace Helper;
 

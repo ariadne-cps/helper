@@ -24,9 +24,9 @@
 
 #include <iostream>
 #include <thread>
-#include "stopwatch.hpp"
+#include "helper/stopwatch.hpp"
 
-#include "test.hpp"
+#include "helper/test.hpp"
 
 using namespace Helper;
 using namespace std::chrono_literals;

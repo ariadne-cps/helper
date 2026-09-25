@@ -22,7 +22,7 @@
  *  along with Helper.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "stack_trace.hpp"
+#include "helper/stack_trace.hpp"
 
 #ifdef ENABLE_STACK_TRACE
 
