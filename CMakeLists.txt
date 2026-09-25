@@ -2,21 +2,14 @@ cmake_minimum_required(VERSION 3.15)
 
 project(Helper VERSION 1.0)
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/submodules/configuration/cmake")
+include(ProjectOptions)
+include(CoverageSupport)
+
 option(COVERAGE "Enable coverage reporting" OFF)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/submodules/configuration/cmake")
-
-if(COVERAGE)
-    if(APPLE AND CMAKE_CXX_COMPILER_ID MATCHES "AppleClang|Clang")
-        include(LLVMCodeCoverage)
-        append_llvm_coverage_compiler_flags()
-    elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-        include(GCCCodeCoverage)
-        append_gcc_coverage_compiler_flags()
-    else()
-        message(FATAL_ERROR "Coverage is supported only with GCC or macOS AppleClang/Clang.")
-    endif()
-endif()
+enable_project_options()
+enable_project_coverage()
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 19.20)
@@ -43,24 +36,6 @@ elseif(COVERAGE)
     set(LIBRARY_KIND STATIC)
 else()
     set(LIBRARY_KIND SHARED)
-endif()
-
-set(CMAKE_MACOSX_RPATH 1)
-set(BUILD_SHARED_LIBS ON)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-if(NOT WIN32)
-    set(ANY_TARGET_WARN all extra pedantic sign-conversion cast-qual disabled-optimization
-            init-self missing-include-dirs sign-promo switch-default undef redundant-decls
-            strict-aliasing unused-parameter shadow error)
-    foreach(WARN ${ANY_TARGET_WARN})
-        add_compile_options(-W${WARN})
-    endforeach()
-else()
-    add_compile_options(/WX)
 endif()
 
 include_directories(SYSTEM ${PROJECT_SOURCE_DIR}/include)
