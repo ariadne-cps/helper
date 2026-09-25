@@ -2,23 +2,9 @@ cmake_minimum_required(VERSION 3.15)
 
 project(Helper VERSION 1.0)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/submodules/configuration/cmake")
-include(ProjectOptions)
-include(CoverageSupport)
+include("${CMAKE_CURRENT_SOURCE_DIR}/submodules/configuration/cmake/ProjectOptions.cmake")
 
-option(COVERAGE "Enable coverage reporting" OFF)
-
-enable_project_options()
-enable_project_coverage()
-
-check_project_compiler(
-    MSVC_MIN 19.20
-    GCC_MIN 10.2
-    CLANG_MIN 11.0
-    ALLOW_TEGRA_GCC
-)
-
-configure_library_kind()
+setup_project()
 
 include_directories(SYSTEM ${PROJECT_SOURCE_DIR}/include)
 
@@ -26,6 +12,7 @@ if(NOT TARGET helper)
     add_subdirectory(src)
 
     add_library(helper ${LIBRARY_KIND} $<TARGET_OBJECTS:HELPER_SRC>)
+    set_target_properties(helper PROPERTIES OUTPUT_NAME "ariadne-helper")
     target_link_libraries(helper)
 
     setup_standalone_project_tests(
