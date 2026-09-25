@@ -11,32 +11,14 @@ option(COVERAGE "Enable coverage reporting" OFF)
 enable_project_options()
 enable_project_coverage()
 
-if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
-    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 19.20)
-        message(FATAL_ERROR "MSVC version must be at least 19.20!")
-    endif()
-elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    if (NOT EXISTS "/etc/nv_tegra_release")
-        if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 10.2)
-            message(FATAL_ERROR "GCC version must be at least 10.2!")
-        endif()
-    endif()
-elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 11.0)
-        message(FATAL_ERROR "Clang version must be at least 11.0!")
-    endif()
-else()
-    message(WARNING "You are using an unsupported compiler! MSVC, GCC and Clang are supported.")
-endif()
+check_project_compiler(
+    MSVC_MIN 19.20
+    GCC_MIN 10.2
+    CLANG_MIN 11.0
+    ALLOW_TEGRA_GCC
+)
 
-if(WIN32)
-    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
-    set(LIBRARY_KIND STATIC)
-elseif(COVERAGE)
-    set(LIBRARY_KIND STATIC)
-else()
-    set(LIBRARY_KIND SHARED)
-endif()
+configure_library_kind()
 
 include_directories(SYSTEM ${PROJECT_SOURCE_DIR}/include)
 
@@ -47,36 +29,17 @@ if(NOT TARGET helper)
     target_link_libraries(helper)
 
     if(CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
-        if(NOT TARGET tests)
-            enable_testing()
-            add_subdirectory(test)
-        endif()
+        enable_testing()
+        add_subdirectory(test)
 
-        if(COVERAGE)
-            if(APPLE AND CMAKE_CXX_COMPILER_ID MATCHES "AppleClang|Clang")
-            setup_target_for_coverage_llvm(
-                NAME coverage
-                TARGET helper
-                OBJECTS
-                    test_array
-                    test_container
-                    test_lazy
-                    test_lru_cache
-                    test_stack_trace
-                    test_randomiser
-                    test_stopwatch
-                DEPENDENCIES tests
-                SOURCES
-                    "${PROJECT_SOURCE_DIR}/include"
-                    "${PROJECT_SOURCE_DIR}/src"
-            )
-        else()
-                setup_target_for_coverage_gcc(
-                    NAME coverage
-                    DEPENDENCIES tests
-                )
-            endif()
-        endif()
+        setup_project_coverage(
+            TARGET helper
+            TEST_TARGET tests
+            SOURCES
+                "${PROJECT_SOURCE_DIR}/include"
+                "${PROJECT_SOURCE_DIR}/src"
+        )
+
     endif()
 
 endif()
