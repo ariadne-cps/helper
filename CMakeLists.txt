@@ -28,18 +28,13 @@ if(NOT TARGET helper)
     add_library(helper ${LIBRARY_KIND} $<TARGET_OBJECTS:HELPER_SRC>)
     target_link_libraries(helper)
 
-    if(CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
-        enable_testing()
-        add_subdirectory(test)
-
-        setup_project_coverage(
-            TARGET helper
-            TEST_TARGET tests
-            SOURCES
-                "${PROJECT_SOURCE_DIR}/include"
-                "${PROJECT_SOURCE_DIR}/src"
-        )
-
-    endif()
+    setup_standalone_project_tests(
+        TARGET helper
+        TEST_DIRECTORY test
+        TEST_TARGET tests
+        SOURCES
+            "${PROJECT_SOURCE_DIR}/include"
+            "${PROJECT_SOURCE_DIR}/src"
+    )
 
 endif()
