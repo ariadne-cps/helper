@@ -46,7 +46,7 @@ template<class L, class V> class LRUCache {
     };
   public:
     //! \brief Construct with a given \a maximum_size
-    LRUCache(size_t maximum_size) : _maximum_size(maximum_size) { UTILITY_PRECONDITION(maximum_size>0); }
+    LRUCache(size_t maximum_size) : _maximum_size(maximum_size) { ARIADNE_PRECONDITION(maximum_size>0); }
 
     //! \brief Check whether the label is present
     bool has_label(L const& label) { return (_elements.find(label) != _elements.end()); }
@@ -55,7 +55,7 @@ template<class L, class V> class LRUCache {
     //! \details Updates age accordingly
     V const& get(L const& label) {
         auto e = _elements.find(label);
-        UTILITY_ASSERT_MSG(e != _elements.end(), "Cache has no element for label " << label);
+        ARIADNE_ASSERT_MSG(e != _elements.end(), "Cache has no element for label " << label);
         for (auto& other : _elements) {
             if (other.second.age < e->second.age)
                 other.second.age++;
@@ -67,14 +67,14 @@ template<class L, class V> class LRUCache {
     //! \brief The age of a given \a label in the cache
     size_t age(L const& label) {
         auto e = _elements.find(label);
-        UTILITY_ASSERT_MSG(e != _elements.end(), "Cache has no element for label " << label);
+        ARIADNE_ASSERT_MSG(e != _elements.end(), "Cache has no element for label " << label);
         return e->second.age;
     }
 
     //! \brief Insert the element
     //! \details The element must not already exist; updates ages accordingly
     void put(L const& label, V const& val) {
-        UTILITY_PRECONDITION(not has_label(label));
+        ARIADNE_PRECONDITION(not has_label(label));
         if (_elements.size() < _maximum_size) {
             for (auto& other : _elements) other.second.age++;
         } else {
