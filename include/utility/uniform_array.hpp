@@ -45,7 +45,7 @@
 
 namespace Ariadne::Utility {
 
-using std::size_t=std::size_t;
+using std::size_t;
 template<class T> using InitializerList=std::initializer_list<T>;
 template<class... TS> using Tuple=std::tuple<TS...>;
 
