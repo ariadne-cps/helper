@@ -37,38 +37,38 @@ class TestLRUCache {
   public:
 
     void test_construct() {
-        UTILITY_TEST_FAIL(CacheType(0));
+        ARIADNE_TEST_FAIL(CacheType(0));
         CacheType cache(1);
-        UTILITY_TEST_EQUALS(cache.current_size(),0);
-        UTILITY_TEST_EQUALS(cache.maximum_size(),1);
+        ARIADNE_TEST_EQUALS(cache.current_size(),0);
+        ARIADNE_TEST_EQUALS(cache.maximum_size(),1);
     }
 
     void test_find() {
         CacheType cache(2);
-        UTILITY_TEST_ASSERT(not cache.has_label("something"));
+        ARIADNE_TEST_ASSERT(not cache.has_label("something"));
     }
 
     void test_get_failure() {
         CacheType cache(2);
-        UTILITY_TEST_FAIL(cache.get("something"));
+        ARIADNE_TEST_FAIL(cache.get("something"));
     }
 
     void test_put_single() {
         CacheType cache(2);
         cache.put("first",42);
-        UTILITY_TEST_EQUALS(cache.current_size(),1);
-        UTILITY_TEST_EQUALS(cache.age("first"),0);
+        ARIADNE_TEST_EQUALS(cache.current_size(),1);
+        ARIADNE_TEST_EQUALS(cache.age("first"),0);
         auto val = cache.get("first");
-        UTILITY_TEST_EQUALS(val,42);
+        ARIADNE_TEST_EQUALS(val,42);
     }
 
     void test_put_multiple() {
         CacheType cache(2);
         cache.put("first",42);
         cache.put("second",10);
-        UTILITY_TEST_EQUALS(cache.current_size(),2);
-        UTILITY_TEST_EQUALS(cache.age("first"),1);
-        UTILITY_TEST_EQUALS(cache.age("second"),0);
+        ARIADNE_TEST_EQUALS(cache.current_size(),2);
+        ARIADNE_TEST_EQUALS(cache.age("first"),1);
+        ARIADNE_TEST_EQUALS(cache.age("second"),0);
     }
 
     void test_put_multiple_over() {
@@ -77,11 +77,11 @@ class TestLRUCache {
         cache.put("second",10);
         cache.put("third",5);
         cache.put("fourth",12);
-        UTILITY_TEST_EQUALS(cache.current_size(),3);
-        UTILITY_TEST_ASSERT(not cache.has_label("first"));
-        UTILITY_TEST_EQUALS(cache.age("second"),2);
-        UTILITY_TEST_EQUALS(cache.age("third"),1);
-        UTILITY_TEST_EQUALS(cache.age("fourth"),0);
+        ARIADNE_TEST_EQUALS(cache.current_size(),3);
+        ARIADNE_TEST_ASSERT(not cache.has_label("first"));
+        ARIADNE_TEST_EQUALS(cache.age("second"),2);
+        ARIADNE_TEST_EQUALS(cache.age("third"),1);
+        ARIADNE_TEST_EQUALS(cache.age("fourth"),0);
     }
 
     void test_get() {
@@ -91,25 +91,25 @@ class TestLRUCache {
         cache.put("third",5);
         cache.put("fourth",12);
         cache.get("second");
-        UTILITY_TEST_EQUALS(cache.age("second"),0);
-        UTILITY_TEST_EQUALS(cache.age("first"),3);
-        UTILITY_TEST_EQUALS(cache.age("third"),2);
-        UTILITY_TEST_EQUALS(cache.age("fourth"),1);
+        ARIADNE_TEST_EQUALS(cache.age("second"),0);
+        ARIADNE_TEST_EQUALS(cache.age("first"),3);
+        ARIADNE_TEST_EQUALS(cache.age("third"),2);
+        ARIADNE_TEST_EQUALS(cache.age("fourth"),1);
     }
 
     void test() {
-        UTILITY_TEST_CALL(test_construct());
-        UTILITY_TEST_CALL(test_find());
-        UTILITY_TEST_CALL(test_get_failure());
-        UTILITY_TEST_CALL(test_put_single());
-        UTILITY_TEST_CALL(test_put_multiple());
-        UTILITY_TEST_CALL(test_put_multiple_over());
-        UTILITY_TEST_CALL(test_get());
+        ARIADNE_TEST_CALL(test_construct());
+        ARIADNE_TEST_CALL(test_find());
+        ARIADNE_TEST_CALL(test_get_failure());
+        ARIADNE_TEST_CALL(test_put_single());
+        ARIADNE_TEST_CALL(test_put_multiple());
+        ARIADNE_TEST_CALL(test_put_multiple_over());
+        ARIADNE_TEST_CALL(test_get());
     }
 
 };
 
 int main() {
     TestLRUCache().test();
-    return UTILITY_TEST_FAILURES;
+    return ARIADNE_TEST_FAILURES;
 }

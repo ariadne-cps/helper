@@ -48,24 +48,24 @@ class TestArray {
     void test_convert() {
         Array<TestClass> tca = {TestClass(1), TestClass(2)};
         Array<TestConvertibleTo> tcta = {TestConvertibleTo(1), TestConvertibleTo(2)};
-        UTILITY_TEST_EXECUTE(Array<TestClass> tcac(tcta));
+        ARIADNE_TEST_EXECUTE(Array<TestClass> tcac(tcta));
     }
 
     void test_print() {
         Array<int> a1;
-        UTILITY_TEST_PRINT(a1);
+        ARIADNE_TEST_PRINT(a1);
         Array<int> a2 = {1, 2};
-        UTILITY_TEST_PRINT(a2);
+        ARIADNE_TEST_PRINT(a2);
     }
 
     void test() {
-        UTILITY_TEST_CALL(test_convert());
-        UTILITY_TEST_CALL(test_print());
+        ARIADNE_TEST_CALL(test_convert());
+        ARIADNE_TEST_CALL(test_print());
     }
 
 };
 
 int main() {
     TestArray().test();
-    return UTILITY_TEST_FAILURES;
+    return ARIADNE_TEST_FAILURES;
 }

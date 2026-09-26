@@ -48,7 +48,7 @@ class TestRandomiser {
         for (size_t i=0; i<_num_tries; ++i)
             values.push_back(rnd.get());
 
-        UTILITY_TEST_PRINT(values)
+        ARIADNE_TEST_PRINT(values)
     }
 
     void test_real() {
@@ -60,17 +60,17 @@ class TestRandomiser {
         for (size_t i=0; i<_num_tries; ++i)
             values.push_back(rnd.get());
 
-        UTILITY_TEST_PRINT(values)
+        ARIADNE_TEST_PRINT(values)
     }
 
     void test() {
-        UTILITY_TEST_CALL(test_int());
-        UTILITY_TEST_CALL(test_real());
+        ARIADNE_TEST_CALL(test_int());
+        ARIADNE_TEST_CALL(test_real());
     }
 
 };
 
 int main() {
     TestRandomiser(10).test();
-    return UTILITY_TEST_FAILURES;
+    return ARIADNE_TEST_FAILURES;
 }

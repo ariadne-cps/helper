@@ -33,7 +33,7 @@ class TestClass {
   public:
     TestClass(double a) {
         _value = a*a;
-        UTILITY_TEST_PRINT("TestClass object created")
+        ARIADNE_TEST_PRINT("TestClass object created")
     }
 
     double value() { return _value; }
@@ -49,18 +49,18 @@ class TestLazy {
         double arg = 2.0;
         Lazy<TestClass> lazy([arg]{ return new TestClass(arg); });
 
-        UTILITY_TEST_PRINT("Lazy created")
+        ARIADNE_TEST_PRINT("Lazy created")
         TestClass obj = lazy();
-        UTILITY_TEST_EQUAL(obj.value(),4.0)
+        ARIADNE_TEST_EQUAL(obj.value(),4.0)
     }
 
     void test() {
-        UTILITY_TEST_CALL(test_creation());
+        ARIADNE_TEST_CALL(test_creation());
     }
 
 };
 
 int main() {
     TestLazy().test();
-    return UTILITY_TEST_FAILURES;
+    return ARIADNE_TEST_FAILURES;
 }

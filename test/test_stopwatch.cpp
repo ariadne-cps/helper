@@ -42,18 +42,18 @@ class TestStopwatch {
         Stopwatch<Microseconds> sw;
         std::this_thread::sleep_for(10ms);
         auto duration = sw.click().duration();
-        UTILITY_TEST_ASSERT(duration.count()>10000);
-        UTILITY_TEST_ASSERT(sw.elapsed_seconds() > 0.01);
+        ARIADNE_TEST_ASSERT(duration.count()>10000);
+        ARIADNE_TEST_ASSERT(sw.elapsed_seconds() > 0.01);
     }
 
     void test() {
-        UTILITY_TEST_CALL(test_create());
-        UTILITY_TEST_CALL(test_duration());
+        ARIADNE_TEST_CALL(test_create());
+        ARIADNE_TEST_CALL(test_duration());
     }
 
 };
 
 int main() {
     TestStopwatch().test();
-    return UTILITY_TEST_FAILURES;
+    return ARIADNE_TEST_FAILURES;
 }

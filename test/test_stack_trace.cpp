@@ -48,13 +48,13 @@ class TestLRUCache {
     }
 
     void test() {
-        UTILITY_TEST_CALL(test_free_function());
-        UTILITY_TEST_CALL(test_class_method());
+        ARIADNE_TEST_CALL(test_free_function());
+        ARIADNE_TEST_CALL(test_class_method());
     }
 
 };
 
 int main() {
     TestLRUCache().test();
-    return UTILITY_TEST_FAILURES;
+    return ARIADNE_TEST_FAILURES;
 }

@@ -33,42 +33,42 @@ class TestContainer {
 
     void test_map_get() {
         Map<int,int> im = {{1,10},{2,20}};
-        UTILITY_TEST_FAIL(im.get(3));
-        UTILITY_TEST_EQUALS(im.get(2),20);
+        ARIADNE_TEST_FAIL(im.get(3));
+        ARIADNE_TEST_EQUALS(im.get(2),20);
     }
 
     void test_map_convert() {
         Map<int,int> im = {{1,10},{2,20}};
 
         Map<int,double> dm(im);
-        UTILITY_TEST_ASSERT(dm.at(1) == im.at(1) and dm.at(2) == im.at(2));
+        ARIADNE_TEST_ASSERT(dm.at(1) == im.at(1) and dm.at(2) == im.at(2));
     }
 
     void test_map_restrict_keys() {
         Set<int> s = {1,2};
         Map<int,double> m = {{1,1.2},{2,1.5},{3,1.0},{5,0.1}};
         auto restricted = restrict_keys(m,s);
-        UTILITY_TEST_EQUALS(restricted.size(),2);
-        UTILITY_TEST_ASSERT(restricted.has_key(1) and restricted.has_key(2));
+        ARIADNE_TEST_EQUALS(restricted.size(),2);
+        ARIADNE_TEST_ASSERT(restricted.has_key(1) and restricted.has_key(2));
     }
 
     void test_make_list_of_set() {
         Set<int> s = {1, 5, 3};
         auto l = make_list(s);
-        UTILITY_TEST_EQUALS(l.size(),3);
-        UTILITY_TEST_ASSERT(l.at(0) == 1 and l.at(1) == 3 and l.at(2) == 5);
+        ARIADNE_TEST_EQUALS(l.size(),3);
+        ARIADNE_TEST_ASSERT(l.at(0) == 1 and l.at(1) == 3 and l.at(2) == 5);
     }
 
     void test() {
-        UTILITY_TEST_CALL(test_map_get());
-        UTILITY_TEST_CALL(test_map_convert());
-        UTILITY_TEST_CALL(test_map_restrict_keys());
-        UTILITY_TEST_CALL(test_make_list_of_set());
+        ARIADNE_TEST_CALL(test_map_get());
+        ARIADNE_TEST_CALL(test_map_convert());
+        ARIADNE_TEST_CALL(test_map_restrict_keys());
+        ARIADNE_TEST_CALL(test_make_list_of_set());
     }
 
 };
 
 int main() {
     TestContainer().test();
-    return UTILITY_TEST_FAILURES;
+    return ARIADNE_TEST_FAILURES;
 }
