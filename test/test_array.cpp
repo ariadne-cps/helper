@@ -6,30 +6,30 @@
  ****************************************************************************/
 
 /*
- *  This file is part of Helper.
+ *  This file is part of Ariadne Utility.
  *
- *  Helper is free software: you can redistribute it and/or modify
+ *  Ariadne Utility is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Helper is distributed in the hope that it will be useful,
+ *  Ariadne Utility is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Helper.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Ariadne Utility.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 #include <iostream>
 
-#include "helper/array.hpp"
-#include "helper/container.hpp"
+#include "utility/array.hpp"
+#include "utility/container.hpp"
 
-#include "helper/test.hpp"
+#include "utility/test.hpp"
 
-using namespace Helper;
+using namespace Ariadne::Utility;
 
 struct TestConvertibleTo {
     TestConvertibleTo(int a_) : a(a_) { }
@@ -48,24 +48,24 @@ class TestArray {
     void test_convert() {
         Array<TestClass> tca = {TestClass(1), TestClass(2)};
         Array<TestConvertibleTo> tcta = {TestConvertibleTo(1), TestConvertibleTo(2)};
-        HELPER_TEST_EXECUTE(Array<TestClass> tcac(tcta));
+        UTILITY_TEST_EXECUTE(Array<TestClass> tcac(tcta));
     }
 
     void test_print() {
         Array<int> a1;
-        HELPER_TEST_PRINT(a1);
+        UTILITY_TEST_PRINT(a1);
         Array<int> a2 = {1, 2};
-        HELPER_TEST_PRINT(a2);
+        UTILITY_TEST_PRINT(a2);
     }
 
     void test() {
-        HELPER_TEST_CALL(test_convert());
-        HELPER_TEST_CALL(test_print());
+        UTILITY_TEST_CALL(test_convert());
+        UTILITY_TEST_CALL(test_print());
     }
 
 };
 
 int main() {
     TestArray().test();
-    return HELPER_TEST_FAILURES;
+    return UTILITY_TEST_FAILURES;
 }

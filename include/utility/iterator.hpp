@@ -6,32 +6,32 @@
  ****************************************************************************/
 
 /*
- *  This file is part of Helper.
+ *  This file is part of Ariadne Utility.
  *
- *  Helper is free software: you can redistribute it and/or modify
+ *  Ariadne Utility is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Helper is distributed in the hope that it will be useful,
+ *  Ariadne Utility is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Helper.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Ariadne Utility.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 /*! \file iterator.hpp
  *  \brief Iterator support, similar to Boost's iterator package.
  */
 
-#ifndef HELPER_ITERATOR_HPP
-#define HELPER_ITERATOR_HPP
+#ifndef ARIADNE_UTILITY_ITERATOR_HPP
+#define ARIADNE_UTILITY_ITERATOR_HPP
 
 #include <iterator>
 
-namespace Helper {
+namespace Ariadne::Utility {
 
 using std::ostream;
 
@@ -140,6 +140,6 @@ template<class I1, class I2> inline auto PairIterator<I1,I2>::dereference() -> R
 template<class I1, class I2> ostream& operator<<(ostream& os, const PairIterator<I1,I2>& e) {
     return os << "{" << e._iter1 << "," << e._iter2 << "}"; }
 
-} // namespace Helper
+} // namespace Ariadne::Utility
 
-#endif /* HELPER_ITERATOR_HPP */
+#endif /* ARIADNE_UTILITY_ITERATOR_HPP */

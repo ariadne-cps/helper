@@ -6,32 +6,32 @@
  ****************************************************************************/
 
 /*
- *  This file is part of Helper.
+ *  This file is part of Ariadne Utility.
  *
- *  Helper is free software: you can redistribute it and/or modify
+ *  Ariadne Utility is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Helper is distributed in the hope that it will be useful,
+ *  Ariadne Utility is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Helper.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Ariadne Utility.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 /*! \file stopwatch.hpp
  *  \brief Stopwatch class to be used for profiling execution times.
  */
 
-#ifndef HELPER_STOPWATCH_HPP
-#define HELPER_STOPWATCH_HPP
+#ifndef ARIADNE_UTILITY_STOPWATCH_HPP
+#define ARIADNE_UTILITY_STOPWATCH_HPP
 
 #include <chrono>
 
-namespace Helper {
+namespace Ariadne::Utility {
 
 using Seconds = std::chrono::seconds;
 using Milliseconds = std::chrono::milliseconds;
@@ -59,6 +59,6 @@ private:
     TimePointType _clicked;
 };
 
-} // namespace Helper
+} // namespace Ariadne::Utility
 
-#endif /* HELPER_STOPWATCH_HPP */
+#endif /* ARIADNE_UTILITY_STOPWATCH_HPP */

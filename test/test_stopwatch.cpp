@@ -6,29 +6,29 @@
  ****************************************************************************/
 
 /*
- *  This file is part of Helper.
+ *  This file is part of Ariadne Utility.
  *
- *  Helper is free software: you can redistribute it and/or modify
+ *  Ariadne Utility is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Helper is distributed in the hope that it will be useful,
+ *  Ariadne Utility is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Helper.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Ariadne Utility.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 #include <iostream>
 #include <thread>
-#include "helper/stopwatch.hpp"
+#include "utility/stopwatch.hpp"
 
-#include "helper/test.hpp"
+#include "utility/test.hpp"
 
-using namespace Helper;
+using namespace Ariadne::Utility;
 using namespace std::chrono_literals;
 
 class TestStopwatch {
@@ -42,18 +42,18 @@ class TestStopwatch {
         Stopwatch<Microseconds> sw;
         std::this_thread::sleep_for(10ms);
         auto duration = sw.click().duration();
-        HELPER_TEST_ASSERT(duration.count()>10000);
-        HELPER_TEST_ASSERT(sw.elapsed_seconds() > 0.01);
+        UTILITY_TEST_ASSERT(duration.count()>10000);
+        UTILITY_TEST_ASSERT(sw.elapsed_seconds() > 0.01);
     }
 
     void test() {
-        HELPER_TEST_CALL(test_create());
-        HELPER_TEST_CALL(test_duration());
+        UTILITY_TEST_CALL(test_create());
+        UTILITY_TEST_CALL(test_duration());
     }
 
 };
 
 int main() {
     TestStopwatch().test();
-    return HELPER_TEST_FAILURES;
+    return UTILITY_TEST_FAILURES;
 }

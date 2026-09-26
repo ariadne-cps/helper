@@ -6,69 +6,69 @@
  ****************************************************************************/
 
 /*
- *  This file is part of Helper.
+ *  This file is part of Ariadne Utility.
  *
- *  Helper is free software: you can redistribute it and/or modify
+ *  Ariadne Utility is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Helper is distributed in the hope that it will be useful,
+ *  Ariadne Utility is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Helper.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Ariadne Utility.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "helper/container.hpp"
+#include "utility/container.hpp"
 
-#include "helper/test.hpp"
+#include "utility/test.hpp"
 
-using namespace Helper;
+using namespace Ariadne::Utility;
 
 class TestContainer {
   public:
 
     void test_map_get() {
         Map<int,int> im = {{1,10},{2,20}};
-        HELPER_TEST_FAIL(im.get(3));
-        HELPER_TEST_EQUALS(im.get(2),20);
+        UTILITY_TEST_FAIL(im.get(3));
+        UTILITY_TEST_EQUALS(im.get(2),20);
     }
 
     void test_map_convert() {
         Map<int,int> im = {{1,10},{2,20}};
 
         Map<int,double> dm(im);
-        HELPER_TEST_ASSERT(dm.at(1) == im.at(1) and dm.at(2) == im.at(2));
+        UTILITY_TEST_ASSERT(dm.at(1) == im.at(1) and dm.at(2) == im.at(2));
     }
 
     void test_map_restrict_keys() {
         Set<int> s = {1,2};
         Map<int,double> m = {{1,1.2},{2,1.5},{3,1.0},{5,0.1}};
         auto restricted = restrict_keys(m,s);
-        HELPER_TEST_EQUALS(restricted.size(),2);
-        HELPER_TEST_ASSERT(restricted.has_key(1) and restricted.has_key(2));
+        UTILITY_TEST_EQUALS(restricted.size(),2);
+        UTILITY_TEST_ASSERT(restricted.has_key(1) and restricted.has_key(2));
     }
 
     void test_make_list_of_set() {
         Set<int> s = {1, 5, 3};
         auto l = make_list(s);
-        HELPER_TEST_EQUALS(l.size(),3);
-        HELPER_TEST_ASSERT(l.at(0) == 1 and l.at(1) == 3 and l.at(2) == 5);
+        UTILITY_TEST_EQUALS(l.size(),3);
+        UTILITY_TEST_ASSERT(l.at(0) == 1 and l.at(1) == 3 and l.at(2) == 5);
     }
 
     void test() {
-        HELPER_TEST_CALL(test_map_get());
-        HELPER_TEST_CALL(test_map_convert());
-        HELPER_TEST_CALL(test_map_restrict_keys());
-        HELPER_TEST_CALL(test_make_list_of_set());
+        UTILITY_TEST_CALL(test_map_get());
+        UTILITY_TEST_CALL(test_map_convert());
+        UTILITY_TEST_CALL(test_map_restrict_keys());
+        UTILITY_TEST_CALL(test_make_list_of_set());
     }
 
 };
 
 int main() {
     TestContainer().test();
-    return HELPER_TEST_FAILURES;
+    return UTILITY_TEST_FAILURES;
 }

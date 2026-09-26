@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(Helper VERSION 1.0)
+project(Utility VERSION 1.0)
 
 include("${CMAKE_CURRENT_SOURCE_DIR}/submodules/configuration/cmake/ProjectOptions.cmake")
 
@@ -8,15 +8,15 @@ setup_project()
 
 include_directories(SYSTEM ${PROJECT_SOURCE_DIR}/include)
 
-if(NOT TARGET helper)
+if(NOT TARGET utility)
     add_subdirectory(src)
 
-    add_library(helper ${LIBRARY_KIND} $<TARGET_OBJECTS:HELPER_SRC>)
-    set_target_properties(helper PROPERTIES OUTPUT_NAME "ariadne-helper")
-    target_link_libraries(helper)
+    add_library(utility ${LIBRARY_KIND} $<TARGET_OBJECTS:UTILITY_SRC>)
+    set_target_properties(utility PROPERTIES OUTPUT_NAME "ariadne-utility")
+    target_link_libraries(utility)
 
     setup_standalone_project_tests(
-        TARGET helper
+        TARGET utility
         TEST_DIRECTORY test
         TEST_TARGET tests
         SOURCES

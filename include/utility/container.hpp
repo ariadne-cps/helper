@@ -6,20 +6,20 @@
  ****************************************************************************/
 
 /*
- *  This file is part of Helper.
+ *  This file is part of Ariadne Utility.
  *
- *  Helper is free software: you can redistribute it and/or modify
+ *  Ariadne Utility is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Helper is distributed in the hope that it will be useful,
+ *  Ariadne Utility is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Helper.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Ariadne Utility.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 /*! \file container.hpp
@@ -28,17 +28,17 @@
 
 
 
-#ifndef HELPER_CONTAINER_HPP
-#define HELPER_CONTAINER_HPP
+#ifndef ARIADNE_UTILITY_CONTAINER_HPP
+#define ARIADNE_UTILITY_CONTAINER_HPP
 
-#include "helper/stdlib.hpp"
+#include "utility/stdlib.hpp"
 
-#include "helper/metaprogramming.hpp"
-#include "helper/stlio.hpp"
-#include "helper/array.hpp"
-#include "helper/macros.hpp"
+#include "utility/metaprogramming.hpp"
+#include "utility/stlio.hpp"
+#include "utility/array.hpp"
+#include "utility/macros.hpp"
 
-namespace Helper {
+namespace Ariadne::Utility {
 
 using std::make_tuple;
 using std::make_pair;
@@ -150,7 +150,7 @@ template<class T> class LinkedList
 };
 template<class T> inline ostream&
 operator<< (ostream &os, const std::list<T>& l) {
-    return Helper::write_sequence(os,l.begin(),l.end());
+    return Ariadne::Utility::write_sequence(os,l.begin(),l.end());
 }
 
 
@@ -251,17 +251,17 @@ template<class K, class T> class Map : public std::map<K,T> {
     using std::map<K,T>::map;
     using std::map<K,T>::insert;
     T& operator[](K k) { return this->std::map<K,T>::operator[](k); }
-    const T& operator[](K k) const { auto iter=this->find(k); HELPER_ASSERT(iter!=this->end()); return iter->second; }
+    const T& operator[](K k) const { auto iter=this->find(k); UTILITY_ASSERT(iter!=this->end()); return iter->second; }
     const T& get(const K& k) const { auto i=this->find(k);
-        HELPER_ASSERT(i!=this->end()); return i->second; }
+        UTILITY_ASSERT(i!=this->end()); return i->second; }
     bool has_key(const K& k) const {
         return this->find(k)!=this->end(); }
     T& value(const K& k) {
         auto iter=this->find(k);
-        HELPER_ASSERT(iter!=this->end()); return iter->second; }
+        UTILITY_ASSERT(iter!=this->end()); return iter->second; }
     const T& value(const K& k) const {
         auto iter=this->find(k);
-        HELPER_ASSERT(iter!=this->end()); return iter->second; }
+        UTILITY_ASSERT(iter!=this->end()); return iter->second; }
     void insert(const std::pair<K,T>& kv) {
         this->std::map<K,T>::insert(kv); }
     void insert(const K& k, const T& v) {
@@ -322,6 +322,6 @@ template<class T> inline List<T> make_list(const Set<T>& set) { return List<T>(s
 
 template<class T> inline Set<T> make_set(const std::vector<T>& lst) { return Set<T>(lst); }
 
-} // namespace Helper
+} // namespace Ariadne::Utility
 
 #endif

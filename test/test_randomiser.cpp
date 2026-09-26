@@ -6,30 +6,30 @@
  ****************************************************************************/
 
 /*
- *  This file is part of Helper.
+ *  This file is part of Ariadne Utility.
  *
- *  Helper is free software: you can redistribute it and/or modify
+ *  Ariadne Utility is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Helper is distributed in the hope that it will be useful,
+ *  Ariadne Utility is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Helper.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Ariadne Utility.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 #include <iostream>
 
-#include "helper/randomiser.hpp"
-#include "helper/container.hpp"
+#include "utility/randomiser.hpp"
+#include "utility/container.hpp"
 
-#include "helper/test.hpp"
+#include "utility/test.hpp"
 
-using namespace Helper;
+using namespace Ariadne::Utility;
 using namespace std;
 
 class TestRandomiser {
@@ -48,7 +48,7 @@ class TestRandomiser {
         for (size_t i=0; i<_num_tries; ++i)
             values.push_back(rnd.get());
 
-        HELPER_TEST_PRINT(values)
+        UTILITY_TEST_PRINT(values)
     }
 
     void test_real() {
@@ -60,17 +60,17 @@ class TestRandomiser {
         for (size_t i=0; i<_num_tries; ++i)
             values.push_back(rnd.get());
 
-        HELPER_TEST_PRINT(values)
+        UTILITY_TEST_PRINT(values)
     }
 
     void test() {
-        HELPER_TEST_CALL(test_int());
-        HELPER_TEST_CALL(test_real());
+        UTILITY_TEST_CALL(test_int());
+        UTILITY_TEST_CALL(test_real());
     }
 
 };
 
 int main() {
     TestRandomiser(10).test();
-    return HELPER_TEST_FAILURES;
+    return UTILITY_TEST_FAILURES;
 }

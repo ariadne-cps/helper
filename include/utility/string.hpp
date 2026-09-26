@@ -6,33 +6,33 @@
  ****************************************************************************/
 
 /*
- *  This file is part of Helper.
+ *  This file is part of Ariadne Utility.
  *
- *  Helper is free software: you can redistribute it and/or modify
+ *  Ariadne Utility is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Helper is distributed in the hope that it will be useful,
+ *  Ariadne Utility is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Helper.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Ariadne Utility.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 /*! \file string.hpp
  *  \brief Wrapper for string class
  */
 
-#ifndef HELPER_STRING_HPP
-#define HELPER_STRING_HPP
+#ifndef ARIADNE_UTILITY_STRING_HPP
+#define ARIADNE_UTILITY_STRING_HPP
 
 #include <string>
 #include <sstream>
 
-namespace Helper {
+namespace Ariadne::Utility {
 
 //! \brief A wrapper for the standard string class.
 class String : public std::string {
@@ -52,6 +52,6 @@ template<class T> inline String to_str(T const& t) {
 template<class T> String class_name();
 template<> inline String class_name<String>() { return "String"; }
 
-} // namespace Helper
+} // namespace Ariadne::Utility
 
-#endif /* HELPER_STRING_HPP */
+#endif /* ARIADNE_UTILITY_STRING_HPP */

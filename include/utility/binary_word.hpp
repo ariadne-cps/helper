@@ -6,20 +6,20 @@
  ****************************************************************************/
 
 /*
- *  This file is part of Helper.
+ *  This file is part of Ariadne Utility.
  *
- *  Helper is free software: you can redistribute it and/or modify
+ *  Ariadne Utility is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Helper is distributed in the hope that it will be useful,
+ *  Ariadne Utility is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Helper.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Ariadne Utility.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 /*! \file binary_word.hpp
@@ -67,18 +67,18 @@
  * for big grids or fine subdivisions, memory may well be a limiting factor.
  */
 
-#ifndef HELPER_BINARY_WORD_HPP
-#define HELPER_BINARY_WORD_HPP
+#ifndef ARIADNE_UTILITY_BINARY_WORD_HPP
+#define ARIADNE_UTILITY_BINARY_WORD_HPP
 
 #include <limits>
 #include <vector>
 #include <iosfwd>
 #include <stdexcept>
 
-#include "helper/macros.hpp"
-#include "helper/stlio.hpp"
+#include "utility/macros.hpp"
+#include "utility/stlio.hpp"
 
-namespace Helper {
+namespace Ariadne::Utility {
 
 using std::ostream;
 using std::istream;
@@ -233,6 +233,6 @@ inline ostream& operator<<(ostream& os, const BinaryWord& bw) {
     return os;
 }
 
-} // namespace Helper
+} // namespace Ariadne::Utility
 
-#endif /* HELPER_BINARY_WORD_HPP */
+#endif /* ARIADNE_UTILITY_BINARY_WORD_HPP */

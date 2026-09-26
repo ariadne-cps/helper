@@ -6,33 +6,33 @@
  ****************************************************************************/
 
 /*
- *  This file is part of Helper.
+ *  This file is part of Ariadne Utility.
  *
- *  Helper is free software: you can redistribute it and/or modify
+ *  Ariadne Utility is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Helper is distributed in the hope that it will be useful,
+ *  Ariadne Utility is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Helper.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Ariadne Utility.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 /*! \file lru_cache.hpp
  *  \brief A Least Recently Used cache for holding a limited number of commonly-accessed objects
  */
 
-#ifndef HELPER_LRU_CACHE_HPP
-#define HELPER_LRU_CACHE_HPP
+#ifndef ARIADNE_UTILITY_LRU_CACHE_HPP
+#define ARIADNE_UTILITY_LRU_CACHE_HPP
 
 #include <map>
-#include "helper/macros.hpp"
+#include "utility/macros.hpp"
 
-namespace Helper {
+namespace Ariadne::Utility {
 
 using std::size_t;
 
@@ -46,7 +46,7 @@ template<class L, class V> class LRUCache {
     };
   public:
     //! \brief Construct with a given \a maximum_size
-    LRUCache(size_t maximum_size) : _maximum_size(maximum_size) { HELPER_PRECONDITION(maximum_size>0); }
+    LRUCache(size_t maximum_size) : _maximum_size(maximum_size) { UTILITY_PRECONDITION(maximum_size>0); }
 
     //! \brief Check whether the label is present
     bool has_label(L const& label) { return (_elements.find(label) != _elements.end()); }
@@ -55,7 +55,7 @@ template<class L, class V> class LRUCache {
     //! \details Updates age accordingly
     V const& get(L const& label) {
         auto e = _elements.find(label);
-        HELPER_ASSERT_MSG(e != _elements.end(), "Cache has no element for label " << label);
+        UTILITY_ASSERT_MSG(e != _elements.end(), "Cache has no element for label " << label);
         for (auto& other : _elements) {
             if (other.second.age < e->second.age)
                 other.second.age++;
@@ -67,14 +67,14 @@ template<class L, class V> class LRUCache {
     //! \brief The age of a given \a label in the cache
     size_t age(L const& label) {
         auto e = _elements.find(label);
-        HELPER_ASSERT_MSG(e != _elements.end(), "Cache has no element for label " << label);
+        UTILITY_ASSERT_MSG(e != _elements.end(), "Cache has no element for label " << label);
         return e->second.age;
     }
 
     //! \brief Insert the element
     //! \details The element must not already exist; updates ages accordingly
     void put(L const& label, V const& val) {
-        HELPER_PRECONDITION(not has_label(label));
+        UTILITY_PRECONDITION(not has_label(label));
         if (_elements.size() < _maximum_size) {
             for (auto& other : _elements) other.second.age++;
         } else {
@@ -104,6 +104,6 @@ template<class L, class V> class LRUCache {
 };
 
 
-} // namespace Helper
+} // namespace Ariadne::Utility
 
-#endif // HELPER_LRU_CACHE_HPP
+#endif // ARIADNE_UTILITY_LRU_CACHE_HPP

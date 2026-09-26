@@ -30,13 +30,13 @@
  *  \brief Class for holding objects that are lazily retrieved.
  */
 
-#ifndef HELPER_LAZY_HPP
-#define HELPER_LAZY_HPP
+#ifndef ARIADNE_UTILITY_LAZY_HPP
+#define ARIADNE_UTILITY_LAZY_HPP
 
 #include <functional>
 #include <memory>
 
-namespace Helper {
+namespace Ariadne::Utility {
 
 using std::function;
 using std::shared_ptr;
@@ -51,6 +51,6 @@ class Lazy {
     mutable shared_ptr<O> _obj;
 };
 
-} // namespace Helper
+} // namespace Ariadne::Utility
 
-#endif // HELPER_LAZY_HPP
+#endif // ARIADNE_UTILITY_LAZY_HPP

@@ -6,32 +6,32 @@
  ****************************************************************************/
 
 /*
- *  This file is part of Helper.
+ *  This file is part of Ariadne Utility.
  *
- *  Helper is free software: you can redistribute it and/or modify
+ *  Ariadne Utility is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Helper is distributed in the hope that it will be useful,
+ *  Ariadne Utility is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Helper.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Ariadne Utility.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 /*! \file writable.hpp
  *  \brief
  */
 
-#ifndef HELPER_WRITABLE_HPP
-#define HELPER_WRITABLE_HPP
+#ifndef ARIADNE_UTILITY_WRITABLE_HPP
+#define ARIADNE_UTILITY_WRITABLE_HPP
 
-#include "helper/metaprogramming.hpp"
+#include "utility/metaprogramming.hpp"
 
-namespace Helper {
+namespace Ariadne::Utility {
 
 using std::ostream;
 
@@ -96,6 +96,6 @@ template<class T> WritableTemporary<T> Writer<T>::operator() (T const& t) const 
 
 template<class T> class RepresentationWriter;
 
-} // namespace Helper
+} // namespace Ariadne::Utility
 
 #endif

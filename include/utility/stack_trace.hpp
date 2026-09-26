@@ -6,29 +6,29 @@
  ****************************************************************************/
 
 /*
- *  This file is part of Helper.
+ *  This file is part of Ariadne Utility.
  *
- *  Helper is free software: you can redistribute it and/or modify
+ *  Ariadne Utility is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Helper is distributed in the hope that it will be useful,
+ *  Ariadne Utility is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Helper.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Ariadne Utility.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef HELPER_STACK_TRACE
-#define HELPER_STACK_TRACE
+#ifndef ARIADNE_UTILITY_STACK_TRACE
+#define ARIADNE_UTILITY_STACK_TRACE
 
-namespace Helper {
+namespace Ariadne::Utility {
 
 void stack_trace();
 
-} // namespace Helper
+} // namespace Ariadne::Utility
 
 #endif

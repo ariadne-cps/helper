@@ -6,23 +6,23 @@
  ****************************************************************************/
 
 /*
- *  This file is part of Helper.
+ *  This file is part of Ariadne Utility.
  *
- *  Helper is free software: you can redistribute it and/or modify
+ *  Ariadne Utility is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Helper is distributed in the hope that it will be useful,
+ *  Ariadne Utility is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Helper.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Ariadne Utility.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "helper/stack_trace.hpp"
+#include "utility/stack_trace.hpp"
 
 #ifdef ENABLE_STACK_TRACE
 
@@ -33,7 +33,7 @@
 #include <dlfcn.h>
 #include <cxxabi.h>
 
-namespace Helper {
+namespace Ariadne::Utility {
 
 void stack_trace() {
     static const unsigned int CALLSTACK_SIZE = 128;
@@ -59,11 +59,11 @@ void stack_trace() {
     free(symbols);
 }
 
-} // namespace Helper
+} // namespace Ariadne::Utility
 
 #else /* ENABLE_STACK_TRACE */
 
-namespace Helper {
+namespace Ariadne::Utility {
 
 void stack_trace() { }
 

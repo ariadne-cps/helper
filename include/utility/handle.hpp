@@ -6,36 +6,36 @@
  ****************************************************************************/
 
 /*
- *  This file is part of Helper.
+ *  This file is part of Ariadne Utility.
  *
- *  Helper is free software: you can redistribute it and/or modify
+ *  Ariadne Utility is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Helper is distributed in the hope that it will be useful,
+ *  Ariadne Utility is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Helper.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Ariadne Utility.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 /*! \file handle.hpp
  *  \brief
  */
 
-#ifndef HELPER_HANDLE_HPP
-#define HELPER_HANDLE_HPP
+#ifndef ARIADNE_UTILITY_HANDLE_HPP
+#define ARIADNE_UTILITY_HANDLE_HPP
 
 #include <memory>
 
-#include "helper/stdlib.hpp"
-#include "helper/metaprogramming.hpp"
-#include "helper/writable.hpp"
+#include "utility/stdlib.hpp"
+#include "utility/metaprogramming.hpp"
+#include "utility/writable.hpp"
 
-namespace Helper {
+namespace Ariadne::Utility {
 
 using std::shared_ptr;
 
@@ -176,6 +176,6 @@ template<class T, class I> shared_ptr<const T> dynamic_pointer_extract(const sha
 }
 
 
-} // namespace Helper
+} // namespace Ariadne::Utility
 
 #endif

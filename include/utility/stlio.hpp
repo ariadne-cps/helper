@@ -6,28 +6,28 @@
  ****************************************************************************/
 
 /*
- *  This file is part of Helper.
+ *  This file is part of Ariadne Utility.
  *
- *  Helper is free software: you can redistribute it and/or modify
+ *  Ariadne Utility is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
  *
- *  Helper is distributed in the hope that it will be useful,
+ *  Ariadne Utility is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Helper.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Ariadne Utility.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 /*! \file Helper/stlio.hpp
  *  \brief Input-output utilities
  */
 
-#ifndef HELPER_STLIO_HPP
-#define HELPER_STLIO_HPP
+#ifndef ARIADNE_UTILITY_STLIO_HPP
+#define ARIADNE_UTILITY_STLIO_HPP
 
 #include <iostream>
 #include <stdexcept>
@@ -41,10 +41,10 @@
 #include <set>
 #include <map>
 #include <memory>
-#include "helper/array.hpp"
-#include "helper/tuple.hpp"
+#include "utility/array.hpp"
+#include "utility/tuple.hpp"
 
-namespace Helper {
+namespace Ariadne::Utility {
 
 using std::ostream;
 using std::istream;
@@ -152,7 +152,7 @@ read_sequence(istream& is, Container& v,
     try {
         is >> c;
         if(c != opening) {
-            throw std::ios_base::failure(std::string("Helper::Base::read_vector: Input must begin with ")+opening);
+            throw std::ios_base::failure(std::string("Ariadne::Utility::Base::read_vector: Input must begin with ")+opening);
         }
 
         /* Handle case of empty list */
@@ -164,14 +164,14 @@ read_sequence(istream& is, Container& v,
 
         while(c != closing) {
             if(is.eof()) {
-                throw std::ios_base::failure("Helper::Base::read_vector: End-of-file reached");
+                throw std::ios_base::failure("Ariadne::Utility::Base::read_vector: End-of-file reached");
             }
             if(c!=separator) {
-                throw std::ios_base::failure(std::string("Helper::Base::read_vector: Items in list must be separated by ")+separator);
+                throw std::ios_base::failure(std::string("Ariadne::Utility::Base::read_vector: Items in list must be separated by ")+separator);
             }
             is >> x;
             if(is.fail()) {
-                throw std::ios_base::failure("Helper::Base::read_vector: ErrorTag inputting value in list");
+                throw std::ios_base::failure("Ariadne::Utility::Base::read_vector: ErrorTag inputting value in list");
             }
             v.push_back(x);
             is >> c;
@@ -194,7 +194,7 @@ template<class TUP, std::size_t N> void write_tuple(std::ostream& os, TUP const&
     os << std::get<N-1>(tup);
 }
 
-} // namespace Helper
+} // namespace Ariadne::Utility
 
 
 /* FIXME: This is a hack to allow io of STL classes.
@@ -215,7 +215,7 @@ operator<<(std::ostream &os, const std::pair<S,T>& s)
 template<class... TS> inline
 std::ostream& operator<<(std::ostream& os, std::tuple<TS...> const& tup) {
     typename std::tuple_size<std::tuple<TS...>>::type sz;
-    os << "("; Helper::write_tuple(os,tup,sz); os << ")"; return os;
+    os << "("; Ariadne::Utility::write_tuple(os,tup,sz); os << ")"; return os;
 }
 
 /*
@@ -224,7 +224,7 @@ inline
 std::ostream&
 operator<< (std::ostream &os, const std::vector<T>& v)
 {
-    return Helper::write_sequence(os,v.begin(),v.end());
+    return Ariadne::Utility::write_sequence(os,v.begin(),v.end());
 }
 */
 
@@ -235,14 +235,14 @@ inline
 std::ostream&
 operator<< (std::ostream &os, const std::deque<T>& d)
 {
-    return Helper::write_sequence(os,d.begin(),d.end());
+    return Ariadne::Utility::write_sequence(os,d.begin(),d.end());
 }
 
 template<class T>
 inline
 ostream&
 operator<< (std::ostream &os, const std::valarray<T>& v) {
-    return Helper::write_sequence(os,&(v[0]),&(v[v.size()-1]));
+    return Ariadne::Utility::write_sequence(os,&(v[0]),&(v[v.size()-1]));
 }
 
 template<class T, class C>
@@ -250,7 +250,7 @@ inline
 std::ostream&
 operator<<(std::ostream &os, const std::set<T,C>& s)
 {
-    return Helper::write_sequence(os,s.begin(), s.end(), '{', '}');
+    return Ariadne::Utility::write_sequence(os,s.begin(), s.end(), '{', '}');
 }
 
 template<class K, class T, class C>
@@ -258,7 +258,7 @@ inline
 std::ostream&
 operator<<(std::ostream &os, const std::map<K,T,C>& m)
 {
-    return Helper::write_map_sequence(os,m.begin(), m.end(), '{', '}');
+    return Ariadne::Utility::write_map_sequence(os,m.begin(), m.end(), '{', '}');
 }
 
 template<class K, class T, class C>
@@ -266,7 +266,7 @@ inline
 std::ostream&
 operator<<(std::ostream &os, const std::map<K,std::shared_ptr<T>,C>& m)
 {
-    return Helper::write_map_pointer_sequence(os,m.begin(), m.end(), '{', '}');
+    return Ariadne::Utility::write_map_pointer_sequence(os,m.begin(), m.end(), '{', '}');
 }
 
 */
@@ -275,10 +275,10 @@ template<class T>
 inline
 std::istream&
 operator>> (std::istream &is, std::vector<T>& v) {
-    return Helper::read_sequence(is,v);
+    return Ariadne::Utility::read_sequence(is,v);
 }
 
 } // namespace std
 
 
-#endif /* HELPER_STLIO_HPP */
+#endif /* ARIADNE_UTILITY_STLIO_HPP */
